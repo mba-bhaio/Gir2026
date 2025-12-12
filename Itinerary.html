@@ -1,0 +1,2183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itinerary Options - Gir 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4A853;
+            --gold-light: #E8C97A;
+            --forest: #1A2F23;
+            --forest-light: #2D4A3A;
+            --sand: #F5ECD7;
+            --sand-dark: #E8DCC0;
+            --earth: #8B7355;
+            --sunset: #C75B39;
+            --cream: #FFFDF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 50vh;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, #3D5C4A 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(212, 168, 83, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            background: var(--gold);
+            color: var(--forest);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--sand);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Tabs */
+        .tabs-container {
+            max-width: 1200px;
+            margin: -3rem auto 2rem;
+            padding: 0 1rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .tabs-nav {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            background: white;
+            padding: 1rem;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            background: transparent;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--forest);
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            background: var(--sand);
+        }
+
+        .tab-btn.active {
+            background: var(--forest);
+            color: var(--gold);
+        }
+
+        /* Timeline Content */
+        .tab-content {
+            display: none;
+            padding: 2rem 0;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .timeline-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .day-header {
+            text-align: center;
+            margin: 3rem 0 2rem;
+            position: relative;
+        }
+
+        .day-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--forest);
+            background: var(--cream);
+            display: inline-block;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .day-header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gold);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        /* Vertical line removed */
+
+        .time-col {
+            width: 160px;
+            flex-shrink: 0;
+            text-align: right;
+            padding-top: 0.5rem;
+        }
+
+        .time {
+            font-weight: 700;
+            color: var(--forest);
+            font-size: 1.1rem;
+        }
+
+        .duration {
+            font-size: 0.85rem;
+            color: var(--earth);
+            margin-top: 0.2rem;
+        }
+
+        .content-col {
+            flex: 1;
+            background: transparent;
+            perspective: 1000px;
+            cursor: pointer;
+            min-height: 120px;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border-radius: 16px;
+        }
+
+        .content-col.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 16px;
+            padding: 1.5rem;
+            background: white;
+            border-left: 4px solid var(--gold);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .flip-card-back {
+            transform: rotateY(180deg);
+            background: var(--cream);
+            border-left: 4px solid var(--forest);
+        }
+
+        /* Dot removed */
+
+        .event-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--forest);
+            margin-bottom: 0.5rem;
+        }
+
+        .event-location {
+            display: inline-block;
+            background: var(--sand);
+            padding: 0.2rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--forest-light);
+            margin-bottom: 0.8rem;
+        }
+
+        .event-details {
+            color: var(--earth);
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            background: var(--cream);
+            border: 1px solid var(--sand-dark);
+            color: var(--earth);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest);
+            color: var(--sand);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .timeline-item::before {
+                left: 1rem;
+                top: 3rem;
+                bottom: -1rem;
+            }
+
+            .time-col {
+                text-align: left;
+                padding-left: 2.5rem;
+                min-width: auto;
+            }
+
+            .content-col {
+                margin-left: 2.5rem;
+            }
+
+            .content-col::before {
+                left: -1.9rem;
+                top: -2.5rem;
+            }
+        }
+        /* Back to top floating card */
+        .back-to-top {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            background: var(--gold);
+            color: var(--forest);
+            border: none;
+            border-radius: 14px;
+            padding: 0.6rem 0.8rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.15s ease, opacity 0.2s ease;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .back-to-top .label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+            display: none;
+        }
+
+        /* Show textual label on wider screens */
+        @media (min-width: 900px) {
+            .back-to-top .label { display: inline-block; }
+        }
+
+        .back-to-top:focus {
+            outline: 3px solid rgba(212,168,83,0.25);
+            outline-offset: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">Gir 2026</div>
+        <h1>Itinerary <span>Options</span></h1>
+        <p class="hero-subtitle">Choose the perfect travel plan for your team</p>
+    </section>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs-container">
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="openTab(event, 'plan1')">Plan 1: 4:00 AM</button>
+            <button class="tab-btn" onclick="openTab(event, 'plan2')">Plan 2: 10:00 PM</button>
+            <button class="tab-btn" onclick="openTab(event, 'plan3')">Plan 3: 12:00 AM</button>
+            <button class="tab-btn" onclick="openTab(event, 'plan4')">Plan 4: Monday</button>
+        </div>
+    </div>
+
+    <!-- Plan 1 Content -->
+    <div id="plan1" class="tab-content active">
+        <div class="timeline-section">
+            <div class="day-header">
+                <h2>Day 1: Travel to Gir</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 AM - 7:30 AM</div>
+                    <div class="duration">3.5 Hours • 178 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Departure & Travel</div>
+                            <div class="event-location">Bhavnagar Trimandir Area</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Departure from Amba School & Travel. 5 Large Buses, Emergency
+                                Kit, First Aid.</div>
+                            <div class="tags">
+                                <span class="tag">Transport POC</span>
+                                <span class="tag">Safety & Logistics</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:30 AM - 8:30 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Breakfast & Fresh-up</div>
+                            <div class="event-location">Bhavnagar Trimandir Area</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Pre-arranged buffet/packed breakfast for 200. Clean restrooms
+                                access.</div>
+                            <div class="tags">
+                                <span class="tag">F&B POC</span>
+                                <span class="tag">Catering</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 AM - 2:00 PM</div>
+                    <div class="duration">5.5 Hours • 277 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Gir</div>
+                            <div class="event-location">Hotel at Gir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Continued Travel to Gir. Route tracking, Driver communication.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Transport POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">2:00 PM - 4:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-in & Rest</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Pre-sorted room keys (50 rooms). Crucial rest after journey.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Logistics POC</span>
+                                <span class="tag">Hospitality</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 PM - 7:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Outdoor Activities</div>
+                            <div class="event-location">Hotel Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Team Games. Open ground booking, Activity Facilitator.</div>
+                            <div class="tags">
+                                <span class="tag">Activity POC</span>
+                                <span class="tag">Team Building</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 PM - 8:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Dinner</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Pre-arranged buffet dinner seating for 200.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">9:00 PM - 11:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities - 1</div>
+                            <div class="event-location">Gir Hotel Hall</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Gir Documentary, Traditional Dance. Projector, screen, sound
+                                system.</div>
+                            <div class="tags">
+                                <span class="tag">Entertainment POC</span>
+                                <span class="tag">Cultural</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 2: Wildlife & Site Seeing</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">6:30 AM - 7:30 AM</div>
+                    <div class="duration">19 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Devaliya</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Queue for Devaliya Bus Safari. IDs mandatory.</div>
+                            <div class="tags">
+                                <span class="tag">Safari POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:30 AM - 9:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Devaliya Bus Safari</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Designated buses/seating as per permit. 45-60 min fixed route.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Amusement Park & Pool</div>
+                            <div class="event-location">Hotel Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Swimming Pool Activities and Amusement Park. Lifeguards present.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Activity POC</span>
+                                <span class="tag">Recreation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 PM - 5:30 PM</div>
+                    <div class="duration">13 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Site Seeing</div>
+                            <div class="event-location">Hirneshvar Mahadev Temple</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Temple Darshan, Crocodile River. Bus parking coordination.</div>
+                            <div class="tags">
+                                <span class="tag">Site Seeing POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">5:30 PM - 6:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Sunset Viewing</div>
+                            <div class="event-location">Sunset Point</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Bhakti and Sunset Viewing. Group photo opportunity.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 12:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities - 2</div>
+                            <div class="event-location">Hotel Hall</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Magical Show, Experience Sharing, Informal. High-engagement.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">Entertainment POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 3: Diu & Return</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 8:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Breakfast & Check-out</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Final bill settled, all rooms checked. Feedback forms.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Diu Visit</div>
+                            <div class="event-location">Diu Fort & Khukri Ship</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fort Visit and Khukri Ship Visit. Group entry tickets.</div>
+                            <div class="tags">
+                                <span class="tag">Site Seeing POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:30 PM - 3:45 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Beach Time</div>
+                            <div class="event-location">Ghoghla Beach</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Lunch at Beach, Activities and Swimming. Lifeguards present.
+                            </div>
+                            <div class="tags">
+                                <span class="tag">F&B POC</span>
+                                <span class="tag">Activity POC</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:30 PM - 8:30 PM</div>
+                    <div class="duration">220 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Return Journey</div>
+                            <div class="event-location">Bhavnagar Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel to Bhavnagar & Dinner Stop. Experience Sharing session.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">9:30 PM - 12:30 AM</div>
+                    <div class="duration">177 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Final Leg</div>
+                            <div class="event-location">Adalaj</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Final Travel and Picnic End. All buses accounted for.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Placeholders for other plans -->
+    <!-- Plan 2 Content -->
+    <div id="plan2" class="tab-content">
+        <div class="timeline-section">
+            <div class="day-header">
+                <h2>Day 1: Junagadh & Somnath</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:30 PM - 5:30 AM</div>
+                    <div class="duration">325 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Overnight Travel</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Overnight Travel (Pre-arranged rest stop). Coordinated
+                                bus/vehicle convoy.</div>
+                            <div class="tags">
+                                <span class="tag">Transport</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">5:30 AM - 7:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Breakfast</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fresh time and Breakfast. Coordinate with a large highway
+                                facility.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 8:30 AM</div>
+                    <div class="duration">99 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Somnath</div>
+                            <div class="event-location">Somnath Temple</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel Time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 AM - 10:30 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Somnath Darshan</div>
+                            <div class="event-location">Somnath Temple</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Darshan for all 200 people. VIP/Group Darshan arrangements if
+                                possible.</div>
+                            <div class="tags">
+                                <span class="tag">Darshan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:30 AM - 11:30 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Walkway Visit</div>
+                            <div class="event-location">Somnath</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Walk, Informal chat, and Photos.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:00 PM - 1:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-in</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Check-in & Freshen up. Pre-allocated room keys for speed.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">1:00 PM - 3:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Lunch & Rest</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Rest and Lunch. Dedicated large-group buffet setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 PM - 7:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Team Building</div>
+                            <div class="event-location">Gir Hotel/Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Outdoor activities. Organized games suited for 200 people.</div>
+                            <div class="tags">
+                                <span class="tag">Activity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 11:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Gir documentary, Traditional dance. Projector, sound system.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 2: Sasan Gir & Site Seeing</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">6:30 AM - 7:30 AM</div>
+                    <div class="duration">19 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Devaliya</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Queue for Devaliya bus safari. Online booking required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:30 AM - 9:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Bus Safari</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Safari is ~45-60 mins.</div>
+                            <div class="tags">
+                                <span class="tag">Safari</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Pool & Amusement</div>
+                            <div class="event-location">Hotel Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Swimming Pool Activities and Amusement Park. Highly engaging
+                                time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">3:30 PM - 5:00 PM</div>
+                    <div class="duration">13 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Site Seeing</div>
+                            <div class="event-location">Harneshvar Mahadev</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Temple, Crocodile River (brief stop). Coordinated transport.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">5:00 PM - 6:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Sunset & High Tea</div>
+                            <div class="event-location">Sunset Point</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Bhakti and Sun set. Pre-arrange snacks/tea at the point.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 12:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities - 2</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Magic show, Experience sharing, Informal. Open mic setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 3: Diu & Departure</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 8:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-out</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Breakfast and Check-out. Fast check-out process for 200.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Diu Visit</div>
+                            <div class="event-location">Diu Fort & Khukri Ship</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fort Visit and Khukri Ship Visit.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:30 PM - 3:45 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Beach Time</div>
+                            <div class="event-location">Goghhla Beach</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Lunch at beach, Beach activities and swimming.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:30 PM - 8:30 PM</div>
+                    <div class="duration">220 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Return Journey</div>
+                            <div class="event-location">Bhavnagar Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Dinner Stop. Experience Sharing session.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">9:30 PM - 12:30 AM</div>
+                    <div class="duration">177 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Arrival</div>
+                            <div class="event-location">Adalaj</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Picnic End.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Plan 3 Content -->
+    <div id="plan3" class="tab-content">
+        <div class="timeline-section">
+            <div class="day-header">
+                <h2>Day 1: Junagadh & Somnath</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:00 AM - 7:00 AM</div>
+                    <div class="duration">325 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Overnight Travel</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Overnight Travel (Pre-arranged rest stop). Coordinated
+                                bus/vehicle convoy.</div>
+                            <div class="tags">
+                                <span class="tag">Transport</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 10:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Breakfast</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fresh time and Breakfast. Coordinate with a large highway
+                                facility.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:00 PM - 1:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-in</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Check-in & Freshen up. Pre-allocated room keys for speed.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">1:00 PM - 3:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Lunch & Rest</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Rest and Lunch. Dedicated large-group buffet setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 PM - 7:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Team Building</div>
+                            <div class="event-location">Gir Hotel/Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Outdoor activities. Organized games suited for 200 people.</div>
+                            <div class="tags">
+                                <span class="tag">Activity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 PM - 8:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Dinner</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Dinner.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 11:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Gir documentary, Traditional dance. Projector, sound system.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 2: Sasan Gir & Site Seeing</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">6:30 AM - 7:30 AM</div>
+                    <div class="duration">19 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Devaliya</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Queue for Devaliya bus safari. Online booking required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:30 AM - 9:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Bus Safari</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Safari is ~45-60 mins.</div>
+                            <div class="tags">
+                                <span class="tag">Safari</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Pool & Amusement</div>
+                            <div class="event-location">Hotel Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Swimming Pool Activities and Amusement Park. Highly engaging
+                                time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">3:30 PM - 5:00 PM</div>
+                    <div class="duration">13 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Site Seeing</div>
+                            <div class="event-location">Harneshvar Mahadev</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Temple, Crocodile River (brief stop). Coordinated transport.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">5:00 PM - 6:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Sunset & High Tea</div>
+                            <div class="event-location">Sunset Point</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Bhakti and Sun set. Pre-arrange snacks/tea at the point.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 12:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities - 2</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Magic show, Experience sharing, Informal. Open mic setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 3: Diu & Departure</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 8:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-out</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Breakfast and Check-out. Fast check-out process for 200.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:00 AM - 10:00 AM</div>
+                    <div class="duration">93 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Diu</div>
+                            <div class="event-location">Diu</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel Time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Diu Visit</div>
+                            <div class="event-location">Diu Fort & Khukri Ship</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fort Visit and Khukri Ship Visit.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:30 PM - 3:45 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Beach Time</div>
+                            <div class="event-location">Goghhla Beach</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Lunch at beach, Beach activities and swimming.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:30 PM - 8:30 PM</div>
+                    <div class="duration">220 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Return Journey</div>
+                            <div class="event-location">Bhavnagar Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Dinner Stop. Experience Sharing session.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">9:30 PM - 12:30 AM</div>
+                    <div class="duration">177 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Arrival</div>
+                            <div class="event-location">Adalaj</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Picnic End.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Plan 4 Content -->
+    <div id="plan4" class="tab-content">
+        <div class="timeline-section">
+            <div class="day-header">
+                <h2>Day 1: Junagadh</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:00 AM - 7:00 AM</div>
+                    <div class="duration">325 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Overnight Travel</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Overnight Travel (Pre-arranged rest stop). Coordinated
+                                bus/vehicle convoy.</div>
+                            <div class="tags">
+                                <span class="tag">Transport</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 10:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Breakfast</div>
+                            <div class="event-location">Junagadh Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fresh time and Breakfast. Coordinate with a large highway
+                                facility.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:00 PM - 1:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-in</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Check-in & Freshen up. Pre-allocated room keys for speed.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">1:00 PM - 3:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Lunch & Rest</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Rest and Lunch. Dedicated large-group buffet setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:00 PM - 7:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Team Building</div>
+                            <div class="event-location">Gir Hotel/Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Outdoor activities. Organized games suited for 200 people.</div>
+                            <div class="tags">
+                                <span class="tag">Activity</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 PM - 8:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Dinner</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Dinner.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 11:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities</div>
+                            <div class="event-location">Gir Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Gir documentary, Traditional dance. Projector, sound system.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 2: Sasan Gir & Site Seeing</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">6:30 AM - 7:30 AM</div>
+                    <div class="duration">19 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Travel to Devaliya</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Queue for Devaliya bus safari. Online booking required.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:30 AM - 9:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Safari / Activity</div>
+                            <div class="event-location">Devaliya Park</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Gir Safari (if permits) or Activity. Safari is ~45-60 mins.</div>
+                            <div class="tags">
+                                <span class="tag">Safari</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Pool & Amusement</div>
+                            <div class="event-location">Hotel Grounds</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Swimming Pool Activities and Amusement Park. Highly engaging
+                                time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">3:00 PM - 6:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Gir Safari (Group 2)</div>
+                            <div class="event-location">Gir Safari</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Safari for Group 2.</div>
+                            <div class="tags">
+                                <span class="tag">Safari</span>
+                                <span class="tag">Group 2</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">3:30 PM - 5:00 PM</div>
+                    <div class="duration">13 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Site Seeing</div>
+                            <div class="event-location">Harneshvar Mahadev</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Temple, Crocodile River (brief stop). Coordinated transport.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">5:00 PM - 6:30 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Sunset & High Tea</div>
+                            <div class="event-location">Sunset Point</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Bhakti and Sun set. Pre-arrange snacks/tea at the point.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">8:30 PM - 12:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Night Activities - 2</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Magic show, Experience sharing, Informal. Open mic setup.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="day-header">
+                <h2>Day 3: Diu & Departure</h2>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">6:00 AM - 9:30 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Gir Safari (Group 1)</div>
+                            <div class="event-location">Gir Safari</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Safari for Group 1.</div>
+                            <div class="tags">
+                                <span class="tag">Safari</span>
+                                <span class="tag">Group 1</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">7:00 AM - 8:00 AM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Check-out</div>
+                            <div class="event-location">Hotel</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Breakfast and Check-out. Fast check-out process for 200.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">10:00 AM - 12:00 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Diu Visit</div>
+                            <div class="event-location">Diu Fort & Khukri Ship</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Fort Visit and Khukri Ship Visit.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">12:30 PM - 3:45 PM</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Beach Time</div>
+                            <div class="event-location">Goghhla Beach</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Lunch at beach, Beach activities and swimming.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">4:30 PM - 8:30 PM</div>
+                    <div class="duration">220 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Return Journey</div>
+                            <div class="event-location">Bhavnagar Trimandir</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Travel & Dinner Stop. Experience Sharing session.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="time-col">
+                    <div class="time">9:30 PM - 12:30 AM</div>
+                    <div class="duration">177 km</div>
+                </div>
+                <div class="content-col" onclick="toggleFlip(this)">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <div class="event-title">Arrival</div>
+                            <div class="event-location">Adalaj</div>
+                            <div style="font-size: 0.8rem; color: var(--earth); margin-top: 0.5rem;">Click for details ↻
+                            </div>
+                        </div>
+                        <div class="flip-card-back">
+                            <div class="event-details">Picnic End.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">Gir 2026</div>
+        <p>One Epic Adventure • 4 Itinerary Options</p>
+    </footer>
+
+    <script>
+        function openTab(evt, planName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(planName).style.display = "block";
+            // Small delay to allow display:block to apply before adding active class for animation
+            setTimeout(() => {
+                document.getElementById(planName).classList.add("active");
+            }, 10);
+            evt.currentTarget.className += " active";
+        }
+
+        function toggleFlip(element) {
+            element.classList.toggle('flipped');
+        }
+
+        // Back to Top button (floating card)
+        (function() {
+            const backBtn = document.createElement('button');
+            backBtn.id = 'backToTop';
+            backBtn.className = 'back-to-top';
+            backBtn.setAttribute('aria-label','Back to top');
+            backBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 19V6"></path>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+                <span class="label">Top</span>
+            `;
+            document.body.appendChild(backBtn);
+
+            const toggleBackBtn = () => {
+                if (window.scrollY > 300) backBtn.classList.add('visible');
+                else backBtn.classList.remove('visible');
+            };
+
+            window.addEventListener('scroll', toggleBackBtn, { passive: true });
+            // initial check
+            toggleBackBtn();
+
+            backBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            backBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    backBtn.click();
+                }
+            });
+        })();
+    </script>
+</body>
+
+</html>

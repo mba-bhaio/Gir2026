@@ -384,6 +384,54 @@
             margin: 0.5rem 0;
             color: var(--forest);
         }
+        /* Back to top floating card */
+        .back-to-top {
+            position: fixed;
+            right: 1.25rem;
+            bottom: 1.25rem;
+            background: var(--gold);
+            color: var(--forest);
+            border: none;
+            border-radius: 14px;
+            padding: 0.6rem 0.8rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            z-index: 9999;
+            transition: transform 0.15s ease, opacity 0.2s ease;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .back-to-top svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+
+        .back-to-top .label {
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.2px;
+            display: none;
+        }
+
+        /* Show textual label on wider screens */
+        @media (min-width: 900px) {
+            .back-to-top .label { display: inline-block; }
+        }
+
+        .back-to-top:focus {
+            outline: 3px solid rgba(212,168,83,0.25);
+            outline-offset: 4px;
+        }
     </style>
 </head>
 <body>
@@ -977,6 +1025,42 @@
         document.querySelectorAll('.fade-in').forEach(el => {
             observer.observe(el);
         });
+
+        // Back to Top button (floating card)
+        (function() {
+            const backBtn = document.createElement('button');
+            backBtn.id = 'backToTop';
+            backBtn.className = 'back-to-top';
+            backBtn.setAttribute('aria-label','Back to top');
+            backBtn.innerHTML = `
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+                    <path d="M12 19V6"></path>
+                    <polyline points="5 12 12 5 19 12"></polyline>
+                </svg>
+                <span class="label">Top</span>
+            `;
+            document.body.appendChild(backBtn);
+
+            const toggleBackBtn = () => {
+                if (window.scrollY > 300) backBtn.classList.add('visible');
+                else backBtn.classList.remove('visible');
+            };
+
+            window.addEventListener('scroll', toggleBackBtn, { passive: true });
+            // initial check
+            toggleBackBtn();
+
+            backBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            backBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    backBtn.click();
+                }
+            });
+        })();
     </script>
 </body>
 </html>

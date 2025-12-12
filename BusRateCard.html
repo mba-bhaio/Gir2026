@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bus Rate Card - Gir 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4A853;
+            --gold-light: #E8C97A;
+            --forest: #1A2F23;
+            --forest-light: #2D4A3A;
+            --sand: #F5ECD7;
+            --sand-dark: #E8DCC0;
+            --earth: #8B7355;
+            --sunset: #C75B39;
+            --cream: #FFFDF7;
+            --green-highlight: #90C695;
+            --red-highlight: #E89B9B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, #3D5C4A 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(212, 168, 83, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            background: var(--gold);
+            color: var(--forest);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--sand);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--earth);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1.5rem auto;
+        }
+
+        /* Bus Operator Cards */
+        .bus-operators {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .operator-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .operator-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 50px rgba(0,0,0,0.12);
+        }
+
+        .operator-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest) 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .operator-header.type-2x2 {
+            background: linear-gradient(135deg, #90C695 0%, #6B9B6F 100%);
+        }
+
+        .operator-header.type-1x2 {
+            background: linear-gradient(135deg, #E89B9B 0%, #C77575 100%);
+        }
+
+        .operator-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            font-weight: 700;
+        }
+
+        .operator-type {
+            background: rgba(255,255,255,0.2);
+            color: var(--cream);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .operator-contact {
+            font-size: 0.9rem;
+            color: var(--sand);
+            margin-top: 0.3rem;
+        }
+
+        /* Table Styles */
+        .rate-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .rate-table thead {
+            background: var(--sand);
+        }
+
+        .rate-table th {
+            padding: 1rem;
+            text-align: left;
+            color: var(--forest);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid var(--sand-dark);
+        }
+
+        .rate-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--sand);
+            color: var(--forest);
+        }
+
+        .rate-table tbody tr:hover {
+            background: rgba(212, 168, 83, 0.05);
+        }
+
+        .rate-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .price-highlight {
+            font-weight: 700;
+            color: var(--sunset);
+            font-size: 1.1rem;
+        }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .category-badge.ac {
+            background: #D4E8F7;
+            color: #2E5F8A;
+        }
+
+        .category-badge.non-ac {
+            background: #FFE8CC;
+            color: #8B5A00;
+        }
+
+        /* Info Section */
+        .info-section {
+            background: var(--sand);
+            padding: 3rem 2rem;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .info-section .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .info-card h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--forest);
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .info-card .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 0.5rem 0;
+        }
+
+        .info-card p {
+            color: var(--earth);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest);
+            color: var(--sand);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .rate-table {
+                font-size: 0.8rem;
+            }
+
+            .rate-table th,
+            .rate-table td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .operator-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .note-box {
+            background: rgba(212, 168, 83, 0.1);
+            border-left: 4px solid var(--gold);
+            padding: 1rem 1.5rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .note-box p {
+            margin: 0.5rem 0;
+            color: var(--forest);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">January 2026</div>
+        <h1>Bus <span>Rate Card</span></h1>
+        <p class="hero-subtitle">Complete pricing details for all bus operators</p>
+    </section>
+
+    <!-- 2x2 Seater Bus Operators -->
+    <section>
+        <div class="section-header">
+            <h2>2x2 Configuration</h2>
+            <div class="divider"></div>
+            <p>Standard comfortable seating with two seats on each side</p>
+        </div>
+
+        <div class="bus-operators">
+            <!-- Dharti Travels -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Dharti Travels</div>
+                        <div class="operator-contact">300 km charge</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>40</td>
+                            <td>₹65</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1828.95</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>₹55</td>
+                            <td><span class="category-badge non-ac">NON AC</span></td>
+                            <td class="price-highlight">₹1565.79</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>₹75</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1656.25</td>
+                            <td>48</td>
+                            <td>3</td>
+                            <td>144</td>
+                        </tr>
+                        <tr>
+                            <td>50</td>
+                            <td>₹65</td>
+                            <td><span class="category-badge non-ac">NON AC</span></td>
+                            <td class="price-highlight">₹1447.92</td>
+                            <td>48</td>
+                            <td>3</td>
+                            <td>144</td>
+                        </tr>
+                        <tr>
+                            <td>49</td>
+                            <td>₹55</td>
+                            <td><span class="category-badge ac">AC Seating</span></td>
+                            <td class="price-highlight">₹1293.48</td>
+                            <td>46</td>
+                            <td>3</td>
+                            <td>138</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Shree Krishna Travels -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Shree Krishna Travels</div>
+                        <div class="operator-contact">7600056915</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>50</td>
+                            <td>₹75</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1656.25</td>
+                            <td>48</td>
+                            <td>3</td>
+                            <td>144</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- SHIVAM BUS PVT LTD -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">SHIVAM BUS PVT LTD</div>
+                        <div class="operator-contact">7201000534</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>36</td>
+                            <td>₹68</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹2013.89</td>
+                            <td>36</td>
+                            <td>3</td>
+                            <td>108</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>₹68</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1907.89</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Shivsagar Travels-Rajkot -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Shivsagar Travels-Rajkot</div>
+                        <div class="operator-contact">7284849505 Parth</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>41</td>
+                            <td>₹0</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1710.53</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Labdhi tours and travels Bhavnagar -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Labdhi Tours and Travels Bhavnagar</div>
+                        <div class="operator-contact">9624140100</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>48</td>
+                            <td>₹70</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1619.57</td>
+                            <td>46</td>
+                            <td>3</td>
+                            <td>138</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>₹65</td>
+                            <td><span class="category-badge non-ac">NON AC</span></td>
+                            <td class="price-highlight">₹1510.87</td>
+                            <td>46</td>
+                            <td>3</td>
+                            <td>138</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Adinath Travels -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Adinath Travels</div>
+                        <div class="operator-contact">9998419413 Visalbhai Jain</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>40</td>
+                            <td>₹65</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1828.95</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                        <tr>
+                            <td>48</td>
+                            <td>₹70</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1619.57</td>
+                            <td>46</td>
+                            <td>3</td>
+                            <td>138</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sahajanand Travels -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Sahajanand Travels</div>
+                        <div class="operator-contact">9426060114</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>48</td>
+                            <td>₹75</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1728.26</td>
+                            <td>46</td>
+                            <td>3</td>
+                            <td>138</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Nilkanth Travels -->
+            <div class="operator-card fade-in">
+                <div class="operator-header type-2x2">
+                    <div>
+                        <div class="operator-name">Nilkanth Travels Kalol</div>
+                        <div class="operator-contact">7041330330</div>
+                    </div>
+                    <div class="operator-type">2x2</div>
+                </div>
+                <table class="rate-table">
+                    <thead>
+                        <tr>
+                            <th>Sofa</th>
+                            <th>Per KM</th>
+                            <th>Category</th>
+                            <th>Total per pax</th>
+                            <th>Bhaio Seating</th>
+                            <th>Total Bus</th>
+                            <th>Capacity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>40</td>
+                            <td>₹60</td>
+                            <td><span class="category-badge ac">AC</span></td>
+                            <td class="price-highlight">₹1697.37</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                        <tr>
+                            <td>40</td>
+                            <td>₹55</td>
+                            <td><span class="category-badge non-ac">NON AC</span></td>
+                            <td class="price-highlight">₹1565.79</td>
+                            <td>38</td>
+                            <td>3</td>
+                            <td>114</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1x2 Sleeper Bus Operators -->
+    <section class="info-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>1x2 Sleeper Configuration</h2>
+                <div class="divider"></div>
+                <p>Premium sleeper berths for maximum comfort</p>
+            </div>
+
+            <div class="bus-operators">
+                <!-- Mahasagar Travels -->
+                <div class="operator-card fade-in">
+                    <div class="operator-header type-1x2">
+                        <div>
+                            <div class="operator-name">Mahasagar Travels</div>
+                            <div class="operator-contact">8128985006</div>
+                        </div>
+                        <div class="operator-type">1x2 Sleeper</div>
+                    </div>
+                    <table class="rate-table">
+                        <thead>
+                            <tr>
+                                <th>Sofa</th>
+                                <th>Per KM</th>
+                                <th>Category</th>
+                                <th>Total per pax</th>
+                                <th>Bhaio Seating</th>
+                                <th>Total Bus</th>
+                                <th>Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>36</td>
+                                <td>₹0</td>
+                                <td><span class="category-badge ac">AC</span></td>
+                                <td class="price-highlight">₹2638.89</td>
+                                <td>36</td>
+                                <td>3</td>
+                                <td>108</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Madhuram Travels -->
+                <div class="operator-card fade-in">
+                    <div class="operator-header type-1x2">
+                        <div>
+                            <div class="operator-name">Madhuram Travels Ahmedabad</div>
+                            <div class="operator-contact">9824773314 - Manishbhai Patel</div>
+                        </div>
+                        <div class="operator-type">1x2 Sleeper</div>
+                    </div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Balmukund Travels - આપણા ફોર્મ પ્રમાણે રુધિરા નો બોકસ માં રોટલી પ્રેશર 75000 થી 80000 વચ્ચે</p>
+                    </div>
+                    <table class="rate-table">
+                        <thead>
+                            <tr>
+                                <th>Sofa</th>
+                                <th>Per KM</th>
+                                <th>Category</th>
+                                <th>Total per pax</th>
+                                <th>Bhaio Seating</th>
+                                <th>Total Bus</th>
+                                <th>Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>36</td>
+                                <td>₹0</td>
+                                <td><span class="category-badge ac">AC</span></td>
+                                <td class="price-highlight">₹2361.1</td>
+                                <td>36</td>
+                                <td>3</td>
+                                <td>108</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SONY TRAVELS -->
+                <div class="operator-card fade-in">
+                    <div class="operator-header type-1x2">
+                        <div>
+                            <div class="operator-name">SONY TRAVELS</div>
+                            <div class="operator-contact">6354932835 - Pareshbhai - Savarkundla</div>
+                        </div>
+                        <div class="operator-type">1x2 Sleeper</div>
+                    </div>
+                    <table class="rate-table">
+                        <thead>
+                            <tr>
+                                <th>Sofa</th>
+                                <th>Per KM</th>
+                                <th>Category</th>
+                                <th>Total per pax</th>
+                                <th>Bhaio Seating</th>
+                                <th>Total Bus</th>
+                                <th>Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>36</td>
+                                <td>₹0</td>
+                                <td><span class="category-badge non-ac">Non AC</span></td>
+                                <td class="price-highlight">₹1944.4</td>
+                                <td>36</td>
+                                <td>3</td>
+                                <td>108</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Shree Patel Travels -->
+                <div class="operator-card fade-in">
+                    <div class="operator-header type-1x2">
+                        <div>
+                            <div class="operator-name">Shree Patel Travels</div>
+                            <div class="operator-contact">95772 95772</div>
+                        </div>
+                        <div class="operator-type">1x2 Sleeper</div>
+                    </div>
+                    <table class="rate-table">
+                        <thead>
+                            <tr>
+                                <th>Sofa</th>
+                                <th>Per KM</th>
+                                <th>Category</th>
+                                <th>Total per pax</th>
+                                <th>Bhaio Seating</th>
+                                <th>Total Bus</th>
+                                <th>Capacity</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>36</td>
+                                <td>₹0</td>
+                                <td><span class="category-badge ac">AC</span></td>
+                                <td class="price-highlight">₹2500</td>
+                                <td>36</td>
+                                <td>3</td>
+                                <td>108</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Summary Info -->
+    <section>
+        <div class="section-header">
+            <h2>Quick Summary</h2>
+            <div class="divider"></div>
+        </div>
+
+        <div class="info-grid">
+            <div class="info-card fade-in">
+                <h3>Total Operators</h3>
+                <div class="value">13</div>
+                <p>Bus service providers</p>
+            </div>
+            <div class="info-card fade-in">
+                <h3>2x2 Seating</h3>
+                <div class="value">9</div>
+                <p>Standard comfort buses</p>
+            </div>
+            <div class="info-card fade-in">
+                <h3>1x2 Sleeper</h3>
+                <div class="value">4</div>
+                <p>Premium sleeper buses</p>
+            </div>
+            <div class="info-card fade-in">
+                <h3>Minimum KM</h3>
+                <div class="value">1000</div>
+                <p>Standard minimum charge</p>
+            </div>
+        </div>
+
+        <div class="note-box">
+            <p><strong>Important Notes:</strong></p>
+            <p>• All prices are per person (per pax)</p>
+            <p>• Minimum kilometer charge: 1000 km</p>
+            <p>• AC and Non-AC options available with select operators</p>
+            <p>• Contact operators directly for current availability and booking</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">Gir 2026</div>
+        <p>Complete bus rate card for your journey planning</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">150 Bhaio • One Epic Adventure</p>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

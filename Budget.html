@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gir 2026 - Trip Budget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4A853;
+            --gold-light: #E8C97A;
+            --forest: #1A2F23;
+            --forest-light: #2D4A3A;
+            --sand: #F5ECD7;
+            --sand-dark: #E8DCC0;
+            --earth: #8B7355;
+            --sunset: #C75B39;
+            --cream: #FFFDF7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--cream);
+            color: var(--forest);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 50%, #3D5C4A 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(212, 168, 83, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(212, 168, 83, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero-badge {
+            background: var(--gold);
+            color: var(--forest);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 800;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+            text-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            color: var(--sand);
+            font-weight: 300;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            color: var(--sand-dark);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--gold);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            color: var(--forest);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--earth);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            width: 60px;
+            height: 3px;
+            background: var(--gold);
+            margin: 1.5rem auto;
+        }
+
+        /* Breakdown Section */
+        .breakdown-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .breakdown-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .breakdown-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .breakdown-icon {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .breakdown-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke: var(--gold);
+            fill: none;
+        }
+
+        .breakdown-info h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 0.25rem;
+        }
+
+        .breakdown-info .price {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--sunset);
+        }
+
+        .total-card {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            color: var(--cream);
+            box-shadow: 0 20px 60px rgba(26, 47, 35, 0.3);
+        }
+
+        .total-card h3 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            color: var(--sand);
+        }
+
+        .total-card .amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .total-card .note {
+            font-size: 1.1rem;
+            color: var(--sand-dark);
+            margin-top: 0.5rem;
+        }
+
+        /* Hotels Section */
+        .hotels-section {
+            background: var(--sand);
+            padding: 5rem 2rem;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .hotels-section .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hotels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .hotel-card {
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            width: 100%;
+        }
+
+        .hotel-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .hotel-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--forest-light) 0%, var(--forest) 100%);
+            text-align: center;
+        }
+
+        .hotel-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .hotel-price span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--sand);
+        }
+
+        .hotel-body {
+            padding: 1.5rem 2rem 2rem;
+        }
+
+        .package-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .package-row:last-child {
+            border-bottom: none;
+        }
+
+        .package-name {
+            font-weight: 500;
+            color: var(--forest);
+        }
+
+        .package-price {
+            font-weight: 700;
+            color: var(--sunset);
+            font-size: 1.1rem;
+        }
+
+        .buffer-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--forest);
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        /* Bus Options */
+        .bus-section {
+            background: var(--forest);
+            padding: 5rem 2rem;
+            margin: 0;
+            max-width: 100%;
+        }
+
+        .bus-section .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bus-section .section-header h2,
+        .bus-section .section-header p {
+            color: var(--cream);
+        }
+
+        .bus-section .section-header p {
+            color: var(--sand);
+        }
+
+        .bus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .bus-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(212, 168, 83, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .bus-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
+            transform: scale(1.02);
+        }
+
+        .bus-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .bus-price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        .bus-price span {
+            font-size: 1rem;
+            color: var(--sand);
+        }
+
+        .bus-desc {
+            color: var(--sand);
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Package Calculator */
+        .calculator-section {
+            background: linear-gradient(180deg, var(--cream) 0%, var(--sand) 100%);
+            padding: 5rem 2rem;
+        }
+
+        .calculator-section .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .package-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .package-table thead {
+            background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 100%);
+        }
+
+        .package-table th {
+            padding: 1.2rem 1rem;
+            text-align: left;
+            color: var(--cream);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .package-table th:first-child {
+            padding-left: 2rem;
+        }
+
+        .package-table td {
+            padding: 1.2rem 1rem;
+            border-bottom: 1px solid var(--sand);
+        }
+
+        .package-table td:first-child {
+            padding-left: 2rem;
+            font-weight: 600;
+            color: var(--forest);
+        }
+
+        .package-table tbody tr:hover {
+            background: var(--sand);
+        }
+
+        .package-table .price-cell {
+            font-weight: 700;
+            color: var(--sunset);
+        }
+
+        .highlight-row {
+            background: rgba(212, 168, 83, 0.1) !important;
+        }
+
+        .highlight-row td {
+            color: var(--forest);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest);
+            color: var(--sand);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 2rem;
+            }
+
+            .stat-value {
+                font-size: 2.2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .package-table {
+                font-size: 0.85rem;
+            }
+
+            .package-table th,
+            .package-table td {
+                padding: 1rem 0.6rem;
+            }
+
+            .package-table td:first-child,
+            .package-table th:first-child {
+                padding-left: 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hotel-container {
+            display: flex;
+            gap: 2rem;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">January 2026</div>
+        <h1>Gir <span>2026</span></h1>
+        <p class="hero-subtitle">An Unforgettable Wildlife Adventure Awaits</p>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">150&#43;</div>
+                <div class="stat-label">Bhaio</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Hotel Options</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Bus Types</div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 5v14M5 12l7 7 7-7" />
+            </svg>
+        </div>
+    </section>
+
+    <!-- Cost Breakdown -->
+    <section class="fade-in">
+        <div class="section-header">
+            <h2>Trip Inclusions</h2>
+            <div class="divider"></div>
+            <p>Everything included in your adventure package, from meals to safaris</p>
+        </div>
+
+        <div class="breakdown-grid">
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Junagadh Trimandir (Breakfast)</h3>
+                    <div class="price">₹60</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 2a7 7 0 0 0 0 14" />
+                        <path d="M12 22a7 7 0 0 0 0-14" />
+                        <path d="M12 2v20" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Devaliya Safari</h3>
+                    <div class="price">₹200</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="9" cy="7" r="4" />
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Lunch - Diu</h3>
+                    <div class="price">₹300</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Pilot 1</h3>
+                    <div class="price">₹275</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <line x1="16" y1="2" x2="16" y2="6" />
+                        <line x1="8" y1="2" x2="8" y2="6" />
+                        <line x1="3" y1="10" x2="21" y2="10" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Pilot 2 (Pre)</h3>
+                    <div class="price">₹150</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                        <path d="M7 2v20"/>
+                        <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Bhavnagar Trimandir (Dinner)</h3>
+                    <div class="price">₹60</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M18 8h1a4 4 0 0 1 0 8h-1M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
+                        <line x1="6" y1="1" x2="6" y2="4" />
+                        <line x1="10" y1="1" x2="10" y2="4" />
+                        <line x1="14" y1="1" x2="14" y2="4" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>High Tea - Diu</h3>
+                    <div class="price">₹30</div>
+                </div>
+            </div>
+
+            <div class="breakdown-card">
+                <div class="breakdown-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <rect x="1" y="3" width="15" height="13" />
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8" />
+                        <circle cx="5.5" cy="18.5" r="2.5" />
+                        <circle cx="18.5" cy="18.5" r="2.5" />
+                    </svg>
+                </div>
+                <div class="breakdown-info">
+                    <h3>Bus Food/Drink</h3>
+                    <div class="price">₹30</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="total-card">
+            <h3>Base Activities Total</h3>
+            <div class="amount">₹1,105</div>
+            <div class="note">Per person (excluding hotel & bus)</div>
+        </div>
+    </section>
+
+    <!-- Bus Options -->
+    <section class="bus-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Bus Options</h2>
+                <div class="divider"></div>
+                <p>Choose your travel comfort level</p>
+            </div>
+
+            <div class="bus-grid">
+                <div class="bus-card">
+                    <h3>2x2 Seater</h3>
+                    <div class="bus-price">₹1,400<span>/person</span></div>
+                    <p class="bus-desc">Standard comfortable seating</p>
+                </div>
+
+                <div class="bus-card">
+                    <h3>2x2 Sleeper</h3>
+                    <div class="bus-price">₹1,850<span>/person</span></div>
+                    <p class="bus-desc">Sleeper berths for rest</p>
+                </div>
+
+                <div class="bus-card">
+                    <h3>2x1 Sleeper</h3>
+                    <div class="bus-price">₹2,250<span>/person</span></div>
+                    <p class="bus-desc">Premium single sleeper comfort</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hotels Section -->
+    <section class="hotels-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Accommodation Options</h2>
+                <div class="divider"></div>
+                <p>Select from our curated list of comfortable stays near Gir National Park</p>
+            </div>
+
+            <div class="hotels-grid">
+                <div class="hotel-container">
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Dana Bhai</h3>
+                            <div class="hotel-price">₹1,800<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹4,305</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹4,755</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹5,155</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Gir Pride Resort</h3>
+                            <div class="hotel-price">₹2,700<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹5,205</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹5,655</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹6,055</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Sukh Sagar Resort</h3>
+                            <div class="hotel-price">₹2,800<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹5,305</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹5,755</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹6,155</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hotel-container">
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Daksh Resort</h3>
+                            <div class="hotel-price">₹3,000<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹5,505</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹5,955</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹6,355</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Saavaj Resort</h3>
+                            <div class="hotel-price">₹3,300<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹5,805</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹6,255</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹6,655</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hotel-card fade-in">
+                        <div class="hotel-header">
+                            <h3>Gir Vihar Resort</h3>
+                            <div class="hotel-price">₹3,500<span>/night</span></div>
+                        </div>
+                        <div class="hotel-body">
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Seater</span>
+                                <span class="package-price">₹6,005</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x2 Sleeper</span>
+                                <span class="package-price">₹6,455</span>
+                            </div>
+                            <div class="package-row">
+                                <span class="package-name">+ 2x1 Sleeper</span>
+                                <span class="package-price">₹6,855</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Pricing with Buffer -->
+    <section class="calculator-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Final Package Pricing</h2>
+                <div class="divider"></div>
+                <p>Complete package prices with 10% buffer included for contingencies</p>
+            </div>
+
+            <table class="package-table">
+                <thead>
+                    <tr>
+                        <th>Hotel</th>
+                        <th>2x2 Seater</th>
+                        <th>2x2 Sleeper</th>
+                        <th>2x1 Sleeper</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight-row">
+                        <td>Hotel Shyam (Dana Bhai)</td>
+                        <td class="price-cell">₹4,736</td>
+                        <td class="price-cell">₹5,231</td>
+                        <td class="price-cell">₹5,671</td>
+                    </tr>
+                    <tr>
+                        <td>Gir Pride Resort</td>
+                        <td class="price-cell">₹5,726</td>
+                        <td class="price-cell">₹6,221</td>
+                        <td class="price-cell">₹6,661</td>
+                    </tr>
+                    <tr>
+                        <td>Sukh Sagar Resort</td>
+                        <td class="price-cell">₹5,836</td>
+                        <td class="price-cell">₹6,331</td>
+                        <td class="price-cell">₹6,771</td>
+                    </tr>
+                    <tr>
+                        <td>Daksh Resort</td>
+                        <td class="price-cell">₹6,056</td>
+                        <td class="price-cell">₹6,551</td>
+                        <td class="price-cell">₹6,991</td>
+                    </tr>
+                    <tr>
+                        <td>Saavaj Resort</td>
+                        <td class="price-cell">₹6,386</td>
+                        <td class="price-cell">₹6,881</td>
+                        <td class="price-cell">₹7,321</td>
+                    </tr>
+                    <tr>
+                        <td>Gir Vihar Resort</td>
+                        <td class="price-cell">₹6,606</td>
+                        <td class="price-cell">₹7,101</td>
+                        <td class="price-cell">₹7,541</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <span class="buffer-badge">10% Buffer Included</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">Gir 2026</div>
+        <p>An unforgettable journey to the land of Asiatic Lions</p>
+        <p style="margin-top: 1rem; opacity: 0.7;">150 Bhaio • One Epic Adventure</p>
+    </footer>
+
+    <script>
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

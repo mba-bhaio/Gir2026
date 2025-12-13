@@ -405,6 +405,52 @@
             content: '🌊';
         }
 
+        /* Timeline Image */
+        .timeline-image {
+            width: 250px;
+            height: 200px;
+            border-radius: 15px;
+            overflow: hidden;
+            flex-shrink: 0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            border: 3px solid var(--gold);
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        /* Odd items: content on left, image on right (after margin) */
+        .timeline-item:nth-child(odd) .timeline-image {
+            left: calc(100% + 60px);
+        }
+
+        /* Even items: content on right, image on left (after margin) */
+        .timeline-item:nth-child(even) .timeline-image {
+            right: calc(100% + 60px);
+        }
+
+        .timeline-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .timeline-item-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-item-wrapper {
+            flex-direction: row-reverse;
+        }
+
         /* Highlights Section */
         .highlights {
             background: var(--forest-dark);
@@ -699,54 +745,75 @@
         <h2 class="section-title">The Journey Awaits</h2>
         <div class="timeline">
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="timeline-date">Day 1 - Jan 15</span>
-                    <h3>🚗 The Adventure Begins</h3>
-                    <ul>
-                        <li>Leave from Adalaj</li>
-                        <li>Overnight journey to Gir</li>
-                        <li>Bonding time on the road</li>
-                    </ul>
+                <div class="timeline-item-wrapper">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Day 1 - Jan 15</span>
+                        <h3>🚗 The Adventure Begins</h3>
+                        <ul>
+                            <li>Leave from Adalaj</li>
+                            <li>Overnight journey to Gir</li>
+                            <li>Bonding time on the road</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="./road.jpeg" alt="Road Trip">
+                    </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="timeline-date">Day 2 - Jan 16</span>
-                    <h3>🏕️ Welcome to the Jungle</h3>
-                    <ul>
-                        <li>Arrive at Gir Resort</li>
-                        <li>Check-in & Breakfast</li>
-                        <li>Resort Activities</li>
-                        <li>Tribal Dance after Dinner</li>
-                    </ul>
+                <div class="timeline-item-wrapper">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Day 2 - Jan 16</span>
+                        <h3>🏕️ Welcome to the Jungle</h3>
+                        <ul>
+                            <li>Arrive at Gir Resort</li>
+                            <li>Check-in & Breakfast</li>
+                            <li>Resort Activities</li>
+                            <li>Tribal Dance after Dinner</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="./entry1.jpg" alt="Resort">
+                    </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="timeline-date">Day 3 - Jan 17</span>
-                    <h3>🦁 Into the Wild</h3>
-                    <ul>
-                        <li>Devaliya Safari (Morning)</li>
-                        <li>Local Sightseeing</li>
-                        <li>Adventure Park (Optional)</li>
-                        <li>Night Activities & Fun</li>
-                    </ul>
+                <div class="timeline-item-wrapper">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Day 3 - Jan 17</span>
+                        <h3>🦁 Into the Wild</h3>
+                        <ul>
+                            <li>Devaliya Safari (Morning)</li>
+                            <li>Local Sightseeing</li>
+                            <li>Adventure Park (Optional)</li>
+                            <li>Night Activities & Fun</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?w=300" alt="Lion Safari">
+                    </div>
                 </div>
             </div>
 
             <div class="timeline-item">
-                <div class="timeline-content">
-                    <span class="timeline-date">Day 4 - Jan 18</span>
-                    <h3>🏖️ Beach Day in Diu</h3>
-                    <ul>
-                        <li>Leave for Diu after Breakfast</li>
-                        <li>War Memorial & INS Khukri</li>
-                        <li>Diu Fort Exploration</li>
-                        <li>Beach Fun till Sunset</li>
-                        <li>Return to Adalaj</li>
-                    </ul>
+                <div class="timeline-item-wrapper">
+                    <div class="timeline-content">
+                        <span class="timeline-date">Day 4 - Jan 18</span>
+                        <h3>🏖️ Beach Day in Diu</h3>
+                        <ul>
+                            <li>Leave for Diu after Breakfast</li>
+                            <li>War Memorial & INS Khukri</li>
+                            <li>Diu Fort Exploration</li>
+                            <li>Beach Fun till Sunset</li>
+                            <li>Return to Adalaj</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-image">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300"
+                            alt="Beach Sunset">
+                    </div>
                 </div>
             </div>
         </div>
@@ -794,19 +861,19 @@
         <h2 class="section-title">A Glimpse of What's Coming</h2>
         <div class="gallery-grid">
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800" alt="Asiatic Lion">
+                <img src="./gir_jungle_safari1.webp" alt="Asiatic Lion">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=800" alt="Beach Sunset">
+                <img src="./swimingPool.jpeg" alt="Beach Sunset">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800" alt="Forest Path">
+                <img src="./tribleImage.jpeg" alt="Forest Path">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Mountain View">
+                <img src="./ghoghla.jpeg" alt="Mountain View">
             </div>
             <div class="gallery-item">
-                <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800" alt="Fort">
+                <img src="./atv.jpg" alt="Fort">
             </div>
         </div>
     </section>
@@ -820,7 +887,7 @@
             <p style="font-size: 1.2rem; margin-bottom: 10px; opacity: 0.9;">Complete Trip Package</p>
             <p style="font-size: 3.5rem; font-weight: 800; color: #d4a853; text-shadow: 2px 4px 10px rgba(0,0,0,0.3);">
                 ₹7,000/-</p>
-            <p style="font-size: 1rem; opacity: 0.8;">Per Person • All Inclusive</p>
+            <p style="font-size: 2rem; opacity: 0.8;">Per Person</p>
         </div>
         <br>
         <!-- <a href="#" class="cta-button">Count Me In! 🚀</a> -->

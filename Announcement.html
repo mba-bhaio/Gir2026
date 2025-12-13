@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roaring Retreat - Gir & Diu Adventure 2026</title>
+    <meta name="description" content="Join us for an epic adventure to Gir National Park and Diu Beach - January 2026">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --forest-dark: #1a3a2f;
+            --forest-green: #2d5a47;
+            --forest-light: #4a7c59;
+            --forest-accent: #7cb083;
+            --ocean-blue: #1a4d5c;
+            --ocean-light: #3d8b9c;
+            --sand: #f4e4bc;
+            --gold: #d4a853;
+            --cream: #faf8f0;
+            --text-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section - Split Forest & Beach */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+        }
+
+        .hero-half {
+            position: relative;
+            width: 50%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .hero-half img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-half:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .hero-half.forest .hero-overlay {
+            background: linear-gradient(135deg, rgba(26, 58, 47, 0.7), rgba(45, 90, 71, 0.5));
+        }
+
+        .hero-half.beach .hero-overlay {
+            background: linear-gradient(135deg, rgba(26, 77, 92, 0.7), rgba(61, 139, 156, 0.5));
+        }
+
+        .hero-label {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 800;
+            text-shadow: 2px 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Main Title Overlay */
+        .main-title-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            text-align: center;
+            color: white;
+            animation: fadeInUp 1.5s ease;
+        }
+
+        .main-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            font-weight: 800;
+            text-shadow: 3px 6px 30px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .main-subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            text-shadow: 1px 2px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), #e8c170);
+            color: var(--forest-dark);
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -30%);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 25px;
+            position: relative;
+        }
+
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 10px;
+            background: white;
+            border-radius: 3px;
+            animation: scrollAnim 2s infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        @keyframes scrollAnim {
+            0% {
+                opacity: 1;
+                top: 8px;
+            }
+
+            100% {
+                opacity: 0;
+                top: 25px;
+            }
+        }
+
+        /* Excitement Banner */
+        .excitement-banner {
+            background: linear-gradient(90deg, var(--forest-dark), var(--forest-green), var(--ocean-blue), var(--forest-green), var(--forest-dark));
+            background-size: 300% 100%;
+            animation: gradientFlow 8s ease infinite;
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+
+        @keyframes gradientFlow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .excitement-banner h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .excitement-banner p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--forest-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--forest-accent), var(--ocean-light));
+            border-radius: 2px;
+        }
+
+        /* Itinerary Section */
+        .itinerary {
+            background: linear-gradient(180deg, var(--cream), #e8f5e9);
+        }
+
+        .timeline {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--forest-green), var(--ocean-blue));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 40px;
+            position: relative;
+            margin-bottom: 50px;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 40px;
+            padding-right: 0;
+            margin-left: auto;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--gold);
+            border: 4px solid var(--forest-dark);
+            border-radius: 50%;
+            top: 20px;
+            right: -16px;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(212, 168, 83, 0.5);
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -16px;
+            right: auto;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-date {
+            background: linear-gradient(135deg, var(--forest-green), var(--forest-accent));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .timeline-item:nth-child(3) .timeline-date,
+        .timeline-item:nth-child(4) .timeline-date {
+            background: linear-gradient(135deg, var(--ocean-blue), var(--ocean-light));
+        }
+
+        .timeline-content h3 {
+            color: var(--forest-dark);
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-content li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+        }
+
+        .timeline-content li::before {
+            content: '🌿';
+            position: absolute;
+            left: 0;
+        }
+
+        .timeline-item:nth-child(3) .timeline-content li::before,
+        .timeline-item:nth-child(4) .timeline-content li::before {
+            content: '🌊';
+        }
+
+        /* Highlights Section */
+        .highlights {
+            background: var(--forest-dark);
+            color: white;
+        }
+
+        .highlights .section-title {
+            color: white;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .highlight-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.08));
+        }
+
+        .highlight-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .highlight-card p {
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            background: linear-gradient(180deg, #e8f5e9, var(--cream));
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, var(--forest-green), var(--ocean-blue));
+            text-align: center;
+            color: white;
+            padding: 100px 5%;
+        }
+
+        .cta h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .cta p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--forest-dark);
+            padding: 20px 50px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--forest-dark);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Floating Elements */
+        .floating-leaves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .leaf {
+            position: absolute;
+            font-size: 2rem;
+            animation: falling linear infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes falling {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.6;
+            }
+
+            90% {
+                opacity: 0.6;
+            }
+
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+            }
+
+            .hero-half {
+                width: 100%;
+                height: 50%;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .main-subtitle {
+                font-size: 1rem;
+                letter-spacing: 4px;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item,
+            .timeline-item:nth-child(even) {
+                width: 100%;
+                padding-left: 60px;
+                padding-right: 0;
+            }
+
+            .timeline-item::before,
+            .timeline-item:nth-child(even)::before {
+                left: 8px;
+                right: auto;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .gallery-item:first-child {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating Leaves Animation -->
+    <div class="floating-leaves" id="leaves"></div>
+
+    <!-- Hero Section - Split Forest & Beach -->
+    <section class="hero">
+        <div class="hero-half forest">
+            <img src="https://images.unsplash.com/photo-1448375240586-882707db888b?w=1200" alt="Dense Forest">
+            <div class="hero-overlay">
+                <span class="hero-label">Explore</span>
+                <h2 class="hero-title">Gir Forest</h2>
+            </div>
+        </div>
+        <div class="hero-half beach">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200" alt="Beautiful Beach">
+            <div class="hero-overlay">
+                <span class="hero-label">Experience</span>
+                <h2 class="hero-title">Diu Beach</h2>
+            </div>
+        </div>
+
+        <!-- Main Title Overlay -->
+        <div class="main-title-overlay">
+            <h1 class="main-title">Roaring Retreat</h1>
+            <p class="main-subtitle">Adventure Awaits</p>
+            <span class="date-badge">🦁 January 15-18, 2026 🌊</span>
+        </div>
+
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- Excitement Banner -->
+    <div class="excitement-banner">
+        <h2>🔥 GET READY FOR THE ADVENTURE OF A LIFETIME! 🔥</h2>
+        <p>3 Days • 2 Destinations • 1 Epic Journey • Unlimited Memories</p>
+    </div>
+
+    <!-- Itinerary Section -->
+    <section class="itinerary" id="itinerary">
+        <h2 class="section-title">The Journey Awaits</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Day 1 - Jan 15</span>
+                    <h3>🚗 The Adventure Begins</h3>
+                    <ul>
+                        <li>Leave from Adalaj</li>
+                        <li>Overnight journey to Gir</li>
+                        <li>Bonding time on the road</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Day 2 - Jan 16</span>
+                    <h3>🏕️ Welcome to the Jungle</h3>
+                    <ul>
+                        <li>Arrive at Gir Resort</li>
+                        <li>Check-in & Breakfast</li>
+                        <li>Resort Activities</li>
+                        <li>Tribal Dance after Dinner</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Day 3 - Jan 17</span>
+                    <h3>🦁 Into the Wild</h3>
+                    <ul>
+                        <li>Devaliya Safari (Morning)</li>
+                        <li>Local Sightseeing</li>
+                        <li>Adventure Park (Optional)</li>
+                        <li>Night Activities & Fun</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span class="timeline-date">Day 4 - Jan 18</span>
+                    <h3>🏖️ Beach Day in Diu</h3>
+                    <ul>
+                        <li>Leave for Diu after Breakfast</li>
+                        <li>War Memorial & INS Khukri</li>
+                        <li>Diu Fort Exploration</li>
+                        <li>Beach Fun till Sunset</li>
+                        <li>Return to Adalaj</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights">
+        <h2 class="section-title">Why You Can't Miss This!</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <span class="highlight-icon">🦁</span>
+                <h3>Gir Safari</h3>
+                <p>Witness the majestic Asiatic Lions in their natural habitat at Devaliya Safari Park</p>
+            </div>
+            <div class="highlight-card">
+                <span class="highlight-icon">🏖️</span>
+                <h3>Beach Vibes</h3>
+                <p>Enjoy the serene beaches of Diu with stunning sunset views and coastal adventures</p>
+            </div>
+            <div class="highlight-card">
+                <span class="highlight-icon">🕺</span>
+                <h3>Tribal Dance</h3>
+                <p>Experience authentic tribal culture with traditional dance performances</p>
+            </div>
+            <div class="highlight-card">
+                <span class="highlight-icon">🏰</span>
+                <h3>Heritage Sites</h3>
+                <p>Explore historic Diu Fort, War Memorial, and the legendary INS Khukri</p>
+            </div>
+            <div class="highlight-card">
+                <span class="highlight-icon">🎉</span>
+                <h3>Night Fun</h3>
+                <p>Informal get-togethers, bonfire nights, and memories to cherish forever</p>
+            </div>
+            <div class="highlight-card">
+                <span class="highlight-icon">🤝</span>
+                <h3>Squad Goals</h3>
+                <p>Connect with Sankul Bhaio in this exciting adventure</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2 class="section-title">A Glimpse of What's Coming</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800" alt="Asiatic Lion">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1520454974749-611b7248ffdb?w=800" alt="Beach Sunset">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800" alt="Forest Path">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800" alt="Mountain View">
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1473496169904-658ba7c44d8a?w=800" alt="Fort">
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>🌟 Are You Ready to Roar? 🌟</h2>
+        <p>Join the pack for an unforgettable adventure through forests and beaches!</p>
+        <div
+            style="background: linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.1)); padding: 30px 50px; border-radius: 20px; display: inline-block; margin-bottom: 30px; backdrop-filter: blur(10px);">
+            <p style="font-size: 1.2rem; margin-bottom: 10px; opacity: 0.9;">Complete Trip Package</p>
+            <p style="font-size: 3.5rem; font-weight: 800; color: #d4a853; text-shadow: 2px 4px 10px rgba(0,0,0,0.3);">
+                ₹7,000/-</p>
+            <p style="font-size: 1rem; opacity: 0.8;">Per Person • All Inclusive</p>
+        </div>
+        <br>
+        <!-- <a href="#" class="cta-button">Count Me In! 🚀</a> -->
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Roaring Retreat 2026 • Gir National Park & Diu Beach</p>
+        <!-- <p style="margin-top: 10px; font-size: 0.9rem;">Made with ❤️ for adventure enthusiasts</p> -->
+    </footer>
+
+    <script>
+        // Floating leaves animation
+        function createLeaf() {
+            const leaves = document.getElementById('leaves');
+            const leaf = document.createElement('div');
+            leaf.className = 'leaf';
+            leaf.innerHTML = ['🍃', '🌿', '🍂', '🌴'][Math.floor(Math.random() * 4)];
+            leaf.style.left = Math.random() * 100 + '%';
+            leaf.style.animationDuration = Math.random() * 10 + 10 + 's';
+            leaf.style.animationDelay = Math.random() * 5 + 's';
+            leaf.style.fontSize = Math.random() * 1 + 1.5 + 'rem';
+            leaves.appendChild(leaf);
+
+            setTimeout(() => {
+                leaf.remove();
+            }, 20000);
+        }
+
+        // Create initial leaves
+        for (let i = 0; i < 10; i++) {
+            setTimeout(createLeaf, i * 500);
+        }
+
+        // Continuously create leaves
+        setInterval(createLeaf, 2000);
+
+        // Smooth scroll for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.timeline-item, .highlight-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,178 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Gir Jungle Safari — Booking Instructions</title>
+	<style>
+		:root{
+			--sand:#F3E9D2;
+			--grass:#2E8B57;
+			--sun:#F4A261;
+			--text:#2b2b2b;
+			--accent:#d97706;
+			--card-bg: rgba(255,255,255,0.9);
+			--max-width:900px;
+			--shadow: 0 8px 24px rgba(12,12,12,0.12);
+			font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+		}
+
+		html,body{height:100%;}
+		body{
+			margin:0;
+			color:var(--text);
+			background: linear-gradient(180deg,#eaf6ef 0%, #f9efe0 40%);
+			display:flex;
+			align-items:flex-start;
+			justify-content:center;
+			padding:28px 16px;
+			-webkit-font-smoothing:antialiased;
+			-moz-osx-font-smoothing:grayscale;
+		}
+
+		.container{
+			width:100%;
+			max-width:var(--max-width);
+			background:var(--card-bg);
+			border-radius:14px;
+			box-shadow:var(--shadow);
+			overflow:hidden;
+		}
+
+		header{
+			background: linear-gradient(90deg, rgba(46,139,87,0.95) 0%, rgba(249,174,72,0.95) 100%);
+			color:white;
+			padding:28px 28px;
+			display:flex;
+			gap:18px;
+			align-items:center;
+		}
+
+		.hero{display:flex;align-items:center;gap:18px;}
+		.logo{
+			width:84px;height:84px;border-radius:10px;background:rgba(255,255,255,0.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;
+		}
+
+		.logo svg{width:62px;height:62px;filter:drop-shadow(0 2px 4px rgba(0,0,0,0.18));}
+
+		header h1{margin:0;font-size:20px;letter-spacing:0.2px}
+		header p{margin:4px 0 0 0;opacity:0.95;font-size:13px}
+
+		main{padding:22px 28px;display:grid;grid-template-columns:1fr 320px;gap:20px}
+
+		.card{background:linear-gradient(180deg,rgba(255,255,255,0.7), rgba(255,255,255,0.85));padding:18px;border-radius:10px}
+
+		h2{margin:0 0 12px 0;font-size:18px;color:var(--grass)}
+
+		ol.steps{padding-left:18px;margin:8px 0 0 0}
+		ol.steps li{margin:10px 0;line-height:1.45}
+
+		.note{font-size:13px;padding:10px;border-left:4px solid var(--accent);background:rgba(255,235,205,0.6);border-radius:6px}
+
+		.right{
+			position:relative;
+		}
+
+		.checklist{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+		.checklist li{display:flex;gap:10px;align-items:flex-start}
+
+		.pill{display:inline-block;padding:6px 8px;border-radius:999px;background:rgba(0,0,0,0.06);font-size:13px}
+
+		a.button{display:inline-block;background:var(--grass);color:white;padding:10px 14px;border-radius:8px;text-decoration:none;font-weight:600}
+
+		footer{padding:14px 28px;border-top:1px solid rgba(0,0,0,0.04);font-size:13px;color:rgba(0,0,0,0.6)}
+
+		/* Responsive */
+		@media (max-width:920px){main{grid-template-columns:1fr}} 
+
+		/* Print friendly */
+		@media print{
+			body{background:white;color:black}
+			header,footer{display:none}
+			.container{box-shadow:none;border-radius:0}
+		}
+	</style>
+</head>
+<body>
+	<div class="container" role="article">
+		<header>
+			<div class="logo" aria-hidden="true">
+				<!-- simple safari jeep + tree SVG -->
+				<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+					<rect x="0" y="0" width="64" height="64" rx="10" fill="rgba(255,255,255,0.06)"/>
+					<path d="M6 44h52v6a4 4 0 0 1-4 4H10a4 4 0 0 1-4-4v-6z" fill="#ffffff" opacity="0.14"/>
+					<path d="M12 42l6-10h28l6 10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					<circle cx="20" cy="48" r="3" fill="#fff"/>
+					<circle cx="44" cy="48" r="3" fill="#fff"/>
+					<path d="M16 20c3-6 10-6 14-2 4-4 11-4 14 2 0 0-2 6-14 6S16 26 16 20z" fill="#fff" opacity="0.06"/>
+				</svg>
+			</div>
+			<div class="hero-text">
+				<h1>Gir Jungle Safari — How to fill the booking form</h1>
+				<p>Clear, step-by-step guidance to complete your Gypsy registration (Friday 16th January — Evening 3–6 PM)</p>
+			</div>
+		</header>
+
+		<main>
+			<section>
+				<div class="card" aria-labelledby="steps-heading">
+					<h2 id="steps-heading">Quick steps (do these in order)</h2>
+					<ol class="steps">
+						<li><strong>Form a group</strong> — Make a group of 6 or 8 people before you start the booking on the website.</li>
+						<li><strong>Open the booking page</strong> — Go to <a href="https://girlion.gujarat.gov.in/GirJungleTrailBooking.aspx" target="_blank" rel="noopener">girlion.gujarat.gov.in → Gir Jungle Trail Booking</a>. Choose Booking → Gir Jungal safari.</li>
+						<li><strong>Select date & time</strong> — Choose <em>Friday 16th January</em> and the slot <em>Evening 3 to 6 PM</em>. Confirm the date on the calendar carefully; bookings are non-refundable.</li>
+						<li><strong>Choose Gypsy seat</strong> — Select gypsy seat 4 / 6 / 8 according to your group size.</li>
+						<li><strong>Prepare ID proof images</strong> — Keep a soft copy for each member (Aadhar / Driving Licence / Election Card / Passport). Upload only .jpg, .jpeg, or .png and ensure each file is less than 3 MB.</li>
+						<li><strong>Fill details & pay token</strong> — Enter details for every member and pay the token amount online to confirm the registration.</li>
+						<li><strong>Confirm & share</strong> — Once booked, update your group chat with the registration confirmation. The booking is non-refundable, not transferable, and cancellations are not allowed.</li>
+					</ol>
+
+					<h3 style="margin-top:16px">Important notes</h3>
+					<div class="note">
+						- Only confirmed online registered persons can travel in that Gypsy group. Exchanges not allowed — if someone is absent, the seat remains empty.<br>
+						- No spot registration. For NRI/foreigners the amount may be higher. Camera carries additional cost. Phones are allowed. Plastic bottles are not permitted.
+					</div>
+				</div>
+
+				<div class="card" style="margin-top:16px">
+					<h2>Checklist before you start</h2>
+					<ul class="checklist">
+						<li><span class="pill">Group size</span> Group of 6 or 8 ready</li>
+						<li><span class="pill">IDs</span> Soft copies (.jpg/.jpeg/.png) — each &lt; 3 MB</li>
+						<li><span class="pill">Payment</span> Card/UPI/Netbanking ready for token amount</li>
+						<li><span class="pill">Date/Slot</span> Friday 16th January — Evening 3 to 6 PM</li>
+						<li><span class="pill">Seat type</span> Gypsy 4 / 6 / 8</li>
+					</ul>
+				</div>
+			</section>
+
+			<aside class="right">
+				<div class="card">
+					<h2>Quick links & resources</h2>
+					<p style="margin:6px 0"><a class="button" href="https://girlion.gujarat.gov.in/GirJungleTrailBooking.aspx" target="_blank" rel="noopener">Open booking site</a></p>
+					<p style="margin:10px 0 0 0;font-size:13px">Guide video: <a href="https://www.youtube.com/watch?v=fzo78BUdvMQ" target="_blank" rel="noopener">YouTube walkthrough</a></p>
+					<p style="margin:8px 0 0 0;font-size:13px">Group spreadsheet: <a href="https://docs.google.com/spreadsheets/d/1PFwlR1jg5cGW6QjhWaR0Dmjqp_dvAdm66frGIF5h3Io/edit?gid=0#gid=0" target="_blank" rel="noopener">Open list of interested members</a></p>
+
+					<hr style="margin:12px 0;border:none;border-top:1px dashed rgba(0,0,0,0.06)"/>
+					<h3 style="margin:0 0 8px 0">Contact</h3>
+					<p style="margin:0;font-size:13px">If you need help with booking, share the exact error or screenshot in your group chat so someone can assist.</p>
+				</div>
+
+				<div class="card" style="margin-top:16px;text-align:center">
+					<h3 style="margin-bottom:8px">Print or save</h3>
+					<p style="margin:0 0 12px 0;font-size:13px">Use your browser's print (Ctrl+P) to save this page as PDF for offline use.</p>
+					<a class="button" href="#" onclick="window.print();return false;">Print / Save PDF</a>
+				</div>
+			</aside>
+		</main>
+
+		<footer>
+            <small>
+                Instruction source: Includes the booking checklist and notes. Last updated:
+                <time datetime="2025-12-15T22:37:00+05:30">15 December 2025, 22:37</time>.
+            </small>
+		</footer>
+	</div>
+</body>
+</html>

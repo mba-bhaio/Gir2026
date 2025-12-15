@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gir Safari Booking Guide - Roaring Retreat 2026</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Playfair+Display:wght@700;900&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --safari-gold: #D4A574;
+            --safari-brown: #8B4513;
+            --safari-dark: #2C1810;
+            --safari-green: #4A6741;
+            --safari-light: #F5E6D3;
+            --safari-orange: #E67E22;
+            --safari-cream: #FFF8E7;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--safari-dark) 0%, #1a0f0a 100%);
+            color: var(--safari-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(212, 165, 116, 0.03) 35px, rgba(212, 165, 116, 0.03) 70px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: linear-gradient(180deg, rgba(212, 165, 116, 0.1) 0%, transparent 100%);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::after {
+            content: '🦁';
+            position: absolute;
+            font-size: 200px;
+            opacity: 0.05;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--safari-gold) 0%, var(--safari-orange) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            text-shadow: 0 0 30px rgba(212, 165, 116, 0.3);
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+
+            0%,
+            100% {
+                filter: brightness(1);
+            }
+
+            50% {
+                filter: brightness(1.2);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--safari-gold);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Alert Box */
+        .alert-box {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.2) 0%, rgba(212, 165, 116, 0.2) 100%);
+            border-left: 5px solid var(--safari-orange);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .alert-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .alert-box h3 {
+            color: var(--safari-orange);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-box h3::before {
+            content: '⚠️';
+            font-size: 1.8rem;
+        }
+
+        /* Info Cards */
+        .info-card {
+            background: linear-gradient(135deg, rgba(74, 103, 65, 0.2) 0%, rgba(44, 24, 16, 0.4) 100%);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 25px 0;
+            border: 1px solid rgba(212, 165, 116, 0.2);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--safari-gold);
+            box-shadow: 0 12px 48px rgba(212, 165, 116, 0.2);
+        }
+
+        .info-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--safari-gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 2.5rem;
+            filter: drop-shadow(0 0 10px rgba(212, 165, 116, 0.5));
+        }
+
+        /* Steps */
+        .steps-container {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.2) 0%, rgba(44, 24, 16, 0.3) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 4px solid var(--safari-gold);
+            position: relative;
+            padding-left: 80px;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            background: linear-gradient(135deg, rgba(139, 69, 19, 0.3) 0%, rgba(44, 24, 16, 0.4) 100%);
+            transform: translateX(10px);
+        }
+
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--safari-gold) 0%, var(--safari-orange) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: var(--safari-dark);
+            box-shadow: 0 4px 15px rgba(212, 165, 116, 0.4);
+        }
+
+        .step h3 {
+            color: var(--safari-gold);
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--safari-light);
+            font-size: 1.05rem;
+        }
+
+        .step strong {
+            color: var(--safari-orange);
+            font-weight: 600;
+        }
+
+        /* Important Instructions */
+        .important-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .important-list li {
+            background: linear-gradient(90deg, rgba(230, 126, 34, 0.15) 0%, transparent 100%);
+            padding: 15px 20px;
+            margin: 12px 0;
+            border-radius: 10px;
+            border-left: 3px solid var(--safari-orange);
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .important-list li::before {
+            content: '🔸';
+            position: absolute;
+            left: 20px;
+            font-size: 1.2rem;
+        }
+
+        .important-list li:hover {
+            background: linear-gradient(90deg, rgba(230, 126, 34, 0.25) 0%, transparent 100%);
+            transform: translateX(5px);
+        }
+
+        /* Requirements Box */
+        .requirements {
+            background: linear-gradient(135deg, rgba(74, 103, 65, 0.3) 0%, rgba(44, 24, 16, 0.3) 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border: 2px dashed var(--safari-green);
+        }
+
+        .requirements h4 {
+            color: var(--safari-gold);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .requirements h4::before {
+            content: '📋';
+            font-size: 1.5rem;
+        }
+
+        .requirements ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .requirements li {
+            padding: 8px 0;
+            color: var(--safari-light);
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .requirements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--safari-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Link Button */
+        .link-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--safari-gold) 0%, var(--safari-orange) 100%);
+            color: var(--safari-dark);
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 25px rgba(212, 165, 116, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .link-button:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(212, 165, 116, 0.6);
+        }
+
+        .link-button span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid rgba(212, 165, 116, 0.2);
+            color: var(--safari-gold);
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            margin: 10px 0;
+        }
+
+        .emoji-decoration {
+            font-size: 2rem;
+            margin: 0 10px;
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .info-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .step {
+                padding-left: 70px;
+            }
+
+            .step::before {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Highlight box */
+        .highlight {
+            background: linear-gradient(135deg, rgba(230, 126, 34, 0.3) 0%, rgba(212, 165, 116, 0.3) 100%);
+            border: 2px solid var(--safari-orange);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--safari-orange);
+            box-shadow: 0 0 30px rgba(230, 126, 34, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🦁 Gir Safari Booking Guide</h1>
+            <p class="subtitle">Roaring Retreat 2026</p>
+        </header>
+
+        <div class="alert-box">
+            <h3>Quick Alert</h3>
+            <p><strong>Only 14 slots left!</strong> This safari is optional and costs extra (not included in the Picnic
+                fee). Once booked, it is <strong>non-refundable</strong>.</p>
+            <p style="margin-top: 10px;">📹 <a href="https://www.youtube.com/watch?v=fzo78BUdvMQ" target="_blank"
+                    style="color: var(--safari-orange); text-decoration: underline;">Watch Video Guidance</a></p>
+        </div>
+
+        <div class="info-card">
+            <h2><span class="icon">🎯</span>Safari Details</h2>
+            <div class="highlight">
+                📅 Friday, 16th January 2026 | ⏰ Evening 3:00 PM - 6:00 PM
+            </div>
+            <p style="margin-top: 20px; font-size: 1.1rem;">Form groups of <strong>6 persons</strong> and book your
+                gypsy safari for an unforgettable wildlife experience in the Gir Forest!</p>
+        </div>
+
+        <div class="info-card">
+            <h2><span class="icon">📝</span>Step-by-Step Booking Guide</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <h3>Form Your Group</h3>
+                    <p>Gather a group of <strong>6 people</strong> who want to experience the safari together. Check the
+                        <a href="https://docs.google.com/spreadsheets/d/1PFwlR1jg5cGW6QjhWaR0Dmjqp_dvAdm66frGIF5h3Io/edit?gid=0#gid=0"
+                            target="_blank" style="color: var(--safari-orange);">interested members list</a> to find
+                        your safari buddies!</p>
+                </div>
+
+                <div class="step">
+                    <h3>Visit the Booking Website</h3>
+                    <p>Go to the official Gir Safari booking portal:</p>
+                    <a href="https://girlion.gujarat.gov.in/GirJungleTrailBooking.aspx" target="_blank"
+                        class="link-button">
+                        <span>🌐 Open Booking Portal</span>
+                    </a>
+                </div>
+
+                <div class="step">
+                    <h3>Navigate to Safari Booking</h3>
+                    <p>Select: <strong>Booking → Gir Jungle Safari</strong></p>
+                </div>
+
+                <div class="step">
+                    <h3>Select Date & Time</h3>
+                    <p>Choose: <strong>Friday, 16th January 2026</strong> | Time: <strong>3:00 PM - 6:00 PM
+                            (Evening)</strong></p>
+                </div>
+
+                <div class="step">
+                    <h3>Choose Gypsy Seating</h3>
+                    <p>Select gypsy seat capacity: <strong>4, 6, or 8 persons</strong> (recommended: 6 for your group)
+                    </p>
+                </div>
+
+                <div class="step">
+                    <h3>Prepare ID Proof Documents</h3>
+                    <div class="requirements">
+                        <h4>Document Requirements</h4>
+                        <ul>
+                            <li>Soft copy (digital) of ID proof for each member</li>
+                            <li>Accepted IDs: Aadhar Card / Driving License / Election Card / Passport</li>
+                            <li>File format: .jpg, .jpeg, or .png only</li>
+                            <li>File size: Less than 3 MB per document</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <h3>Fill in All Details</h3>
+                    <p>Complete the booking form with accurate information for all group members. Double-check all
+                        entries before submission.</p>
+                </div>
+
+                <div class="step">
+                    <h3>Pay Token Amount</h3>
+                    <p>Complete the online payment as specified on the website. Keep the payment confirmation safe.</p>
+                </div>
+
+                <div class="step">
+                    <h3>Confirm Your Booking</h3>
+                    <p>Update the group once you've confirmed your Gypsy registration. Share your booking confirmation!
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <h2><span class="icon">⚡</span>Important Instructions</h2>
+            <ul class="important-list">
+                <li><strong>Book as soon as possible</strong> - Limited slots available!</li>
+                <li><strong>Self-booking required</strong> - You must complete this booking yourself</li>
+                <li><strong>Non-refundable amount</strong> - Payment cannot be returned</li>
+                <li><strong>No cancellations allowed</strong> - Booking is final</li>
+                <li><strong>No exchanges or transfers</strong> - Only registered persons can join their specific Gypsy
+                    group</li>
+                <li><strong>Empty seat policy</strong> - If a registered person is unavailable, their seat remains empty
+                    during the safari</li>
+                <li><strong>No spot registration</strong> - Pre-booking is mandatory</li>
+                <li><strong>NRI/Foreigner rates</strong> - Additional charges apply (check website for details)</li>
+                <li><strong>Camera charges</strong> - Additional fee for cameras</li>
+                <li><strong>Phone allowed</strong> - You can bring your mobile phone</li>
+                <li><strong>No plastic bottles</strong> - Plastic bottles are not permitted</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p><span class="emoji-decoration">🦁</span> <span class="emoji-decoration">🌿</span> <span
+                    class="emoji-decoration">📸</span></p>
+            <p style="font-size: 1.3rem; font-weight: 600; margin: 20px 0;">Get Ready for an Unforgettable Safari
+                Adventure!</p>
+            <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 20px;">Roaring Retreat 2026 - Gir Safari Experience
+            </p>
+        </footer>
+    </div>
+</body>
+
+</html>

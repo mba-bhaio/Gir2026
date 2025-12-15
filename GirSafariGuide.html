@@ -375,6 +375,36 @@
             z-index: 1;
         }
 
+        /* Highlighted inline link used for the interested-members list */
+        .highlight-link {
+            display: inline-block;
+            background: linear-gradient(90deg, rgba(230,126,34,0.12), rgba(212,165,116,0.06));
+            color: var(--safari-dark);
+            padding: 6px 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(230,126,34,0.18);
+            text-decoration: none;
+            font-weight: 700;
+            box-shadow: 0 6px 18px rgba(230,126,34,0.06);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+            vertical-align: middle;
+        }
+
+        .highlight-link,
+        .highlight-link {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(230,126,34,0.14);
+            background: linear-gradient(90deg, var(--safari-gold), var(--safari-orange));
+            color: var(--safari-dark);
+            text-decoration: none;
+        }
+
+        .highlight-link {
+            outline: 3px solid rgba(230,126,34,0.18);
+            outline-offset: 3px;
+            margin: 0 8px;
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -458,7 +488,7 @@
 
         <div class="alert-box">
             <h3>Quick Alert</h3>
-            <p><strong>Only 11 slots left!</strong> This safari is optional and costs extra (not included in the Picnic
+            <p><strong>Only <span id="slots-left">11</span> slots left!</strong> This safari is optional and costs extra (not included in the Picnic
                 fee). Once booked, it is <strong>non-refundable</strong>.</p>
             <p style="margin-top: 10px;">📹 <a href="https://www.youtube.com/watch?v=fzo78BUdvMQ" target="_blank"
                     style="color: var(--safari-orange); text-decoration: underline;">Watch on YouTube</a></p>
@@ -488,8 +518,8 @@
                 <div class="step">
                     <h3>Form Your Group</h3>
                     <p>Gather a group of <strong>6 people</strong> who want to experience the safari together. Check the
-                        <a href="https://docs.google.com/spreadsheets/d/1PFwlR1jg5cGW6QjhWaR0Dmjqp_dvAdm66frGIF5h3Io/edit?gid=0#gid=0"
-                            target="_blank" style="color: var(--safari-orange);">interested members list</a> to find
+                        <a class="highlight-link" href="https://docs.google.com/spreadsheets/d/1PFwlR1jg5cGW6QjhWaR0Dmjqp_dvAdm66frGIF5h3Io/edit?gid=0#gid=0"
+                            target="_blank" rel="noopener noreferrer" aria-label="Open interested members list in a new tab">interested members list</a> to find
                         your safari buddies!</p>
                 </div>
 
@@ -515,7 +545,7 @@
 
                 <div class="step">
                     <h3>Choose Gypsy Seating</h3>
-                    <p>Select gypsy seat capacity: <strong>4, 6, or 8 persons</strong> (recommended: 6 for your group)
+                    <p>Select gypsy seat capacity: <strong> 6 or 8 persons</strong> (recommended: 6 for your group)
                     </p>
                 </div>
 
@@ -579,6 +609,31 @@
             </p>
         </footer>
     </div>
+    <script>
+        (function () {
+            // Default visible slots
+            var defaultSlots = 11;
+            var slotsEl = document.getElementById('slots-left');
+            if (!slotsEl) return;
+
+            try {
+                var params = new URLSearchParams(window.location.search);
+                var a = params.get('a');
+                if (a !== null) {
+                    // parse as integer and ensure it's a non-negative reasonable number
+                    var parsed = parseInt(a, 10);
+                    if (!Number.isNaN(parsed) && isFinite(parsed) && parsed >= 0) {
+                        // clamp to a sensible max to avoid UI breakage
+                        var clamped = Math.min(parsed, 9999);
+                        slotsEl.textContent = String(clamped);
+                    }
+                }
+            } catch (e) {
+                // If anything goes wrong, leave the default value
+                console && console.warn && console.warn('Could not read slots from URL param a:', e);
+            }
+        })();
+    </script>
 </body>
 
 </html>

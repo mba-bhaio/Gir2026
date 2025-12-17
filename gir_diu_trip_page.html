@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MBA Gir-Diu Adventure 2026 | 3-Day Brotherhood Expedition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(21, 87, 36, 0.9), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1516426122078-c23e76319801?w=1200') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 10px rgba(0,0,0,0.5);
+            animation: slideDown 1s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+        }
+
+        .hero-details {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-detail-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-detail-item span:first-child {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-detail-item span:last-child {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+        }
+
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-dark {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+        }
+
+        .section-light {
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ff6b35, #f7931e);
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 4rem;
+        }
+
+        .section-dark .section-subtitle {
+            color: #bbb;
+        }
+
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .highlight-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .highlight-content {
+            padding: 1.5rem;
+        }
+
+        .highlight-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #155724;
+        }
+
+        .highlight-content p {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        .days-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .day-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .day-header {
+            background: linear-gradient(135deg, #155724, #2d8a4d);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .day-number {
+            font-size: 3rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .day-title h3 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .day-title p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .day-content {
+            padding: 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, #155724, #f7931e);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.4rem;
+            top: 0.3rem;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff6b35;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #ff6b35;
+        }
+
+        .timeline-time {
+            font-weight: bold;
+            color: #155724;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-location {
+            display: inline-block;
+            background: #fff3cd;
+            color: #856404;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: #555;
+            margin-top: 0.5rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: bold;
+            color: #ff6b35;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #155724;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #ff6b35, #f7931e);
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button-white {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #ff6b35;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .day-number {
+                width: 60px;
+                height: 60px;
+                font-size: 2rem;
+            }
+
+            .day-title h3 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>🦁 GIR-DIU ADVENTURE 2026 🏖️</h1>
+            <p class="hero-subtitle">A Journey of Brotherhood, Nature & Discovery</p>
+            <div class="hero-details">
+                <div class="hero-detail-item">
+                    <span>📅</span>
+                    <span>Jan 16-18, 2026</span>
+                </div>
+                <div class="hero-detail-item">
+                    <span>👥</span>
+                    <span>200 Brothers</span>
+                </div>
+                <div class="hero-detail-item">
+                    <span>🚌</span>
+                    <span>3 Days Journey</span>
+                </div>
+                <div class="hero-detail-item">
+                    <span>🎯</span>
+                    <span>Ages 22-35</span>
+                </div>
+            </div>
+            <a href="#register" class="cta-button">Join the Adventure →</a>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">Experience the Extraordinary</h2>
+            <p class="section-subtitle">From wild safaris to serene beaches, every moment is crafted for unforgettable memories</p>
+            
+            <div class="highlights">
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1534177616072-ef7dc120449d?w=600" alt="Lion Safari" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🦁 Asiatic Lion Safari</h3>
+                        <p>Witness majestic Asiatic lions in their natural habitat at Devaliya Park, Gir Forest—one of the last remaining homes of these incredible creatures.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="Beach Activities" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🏖️ Ghoghla Beach Paradise</h3>
+                        <p>Crystal-clear waters, golden sands, and endless beach games. Swimming, volleyball, and pure coastal bliss await at Diu's pristine shoreline.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1585159812596-fbd1154be80f?w=600" alt="Diu Fort" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🏰 Historic Diu Fort</h3>
+                        <p>Explore 450 years of history at this Portuguese fortress. Stunning architecture, ocean views, and stories of ancient civilizations.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600" alt="Team Activities" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🤝 Brotherhood Bonding</h3>
+                        <p>Team games, magical shows, experience sharing, and cultural performances that strengthen bonds and create lifelong friendships.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?w=600" alt="Temple" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🕉️ Spiritual Moments</h3>
+                        <p>Visit Hirneshvar Mahadev Temple and witness breathtaking sunsets. Moments of peace, gratitude, and spiritual connection.</p>
+                    </div>
+                </div>
+                
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600" alt="Luxury Accommodation" class="highlight-image">
+                    <div class="highlight-content">
+                        <h3>🏨 Premium Comfort</h3>
+                        <p>Spacious rooms, delicious meals, pool facilities, and all modern amenities. Rest and recharge in style after each day's adventure.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">The Journey in Numbers</h2>
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">755+</div>
+                    <div class="stat-label">Kilometers Traveled</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Action-Packed Days</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">200</div>
+                    <div class="stat-label">Brothers United</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Unique Activities</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Itinerary -->
+    <section class="section section-light">
+        <div class="container">
+            <h2 class="section-title">Your Adventure Timeline</h2>
+            <p class="section-subtitle">Every hour planned for maximum enjoyment and meaningful experiences</p>
+            
+            <div class="days-container">
+                <!-- Day 1 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">1</div>
+                        <div class="day-title">
+                            <h3>Journey Begins & Evening Magic</h3>
+                            <p>Thursday, January 16, 2026 — Travel to Gir & First Night Activities</p>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">🌅 4:00 AM - 7:30 AM</div>
+                                <span class="timeline-location">📍 Amba School → Bhavnagar (178 km)</span>
+                                <p class="timeline-description">Early morning departure in 5 comfortable buses. The adventure begins!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🍳 7:30 AM - 8:30 AM</div>
+                                <span class="timeline-location">📍 Bhavnagar Trimandir</span>
+                                <p class="timeline-description">Hearty breakfast buffet to fuel the journey ahead.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🚌 8:30 AM - 2:00 PM</div>
+                                <span class="timeline-location">📍 Road to Gir (277 km)</span>
+                                <p class="timeline-description">Scenic drive through Gujarat's countryside with comfort breaks.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🏨 2:00 PM - 4:00 PM</div>
+                                <span class="timeline-location">📍 Gir Hotel</span>
+                                <p class="timeline-description">Check-in to your rooms and rest after the journey. Freshen up and recharge.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">⚽ 4:00 PM - 7:00 PM</div>
+                                <span class="timeline-location">📍 Hotel Grounds</span>
+                                <p class="timeline-description">Team building games and outdoor activities. Get to know your fellow travelers!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🍽️ 7:00 PM - 8:30 PM</div>
+                                <span class="timeline-location">📍 Hotel Restaurant</span>
+                                <p class="timeline-description">Delicious dinner buffet with diverse cuisines.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🎭 9:00 PM - 11:00 PM</div>
+                                <span class="timeline-location">📍 Hotel Hall</span>
+                                <p class="timeline-description">Gir wildlife documentary screening followed by captivating traditional dance performance. Cultural immersion begins!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">2</div>
+                        <div class="day-title">
+                            <h3>Wildlife Safari & Cultural Exploration</h3>
+                            <p>Friday, January 17, 2026 — The Heart of the Adventure</p>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">🦁 6:30 AM - 9:00 AM</div>
+                                <span class="timeline-location">📍 Devaliya Park Safari</span>
+                                <p class="timeline-description"><strong>HIGHLIGHT OF THE TRIP!</strong> Early morning bus safari through Gir's Devaliya Park. Spot Asiatic lions, leopards, deer, and diverse wildlife in their natural habitat. Bring your cameras!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🚌 9:00 AM - 10:00 AM</div>
+                                <span class="timeline-location">📍 Return to Hotel</span>
+                                <p class="timeline-description">Quick freshen-up break after the exciting safari.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🏊 10:00 AM - 12:30 PM</div>
+                                <span class="timeline-location">📍 Hotel Amusement Park & Pool</span>
+                                <p class="timeline-description">Free time for swimming, poolside relaxation, and amusement park activities. Beat the heat and have fun!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🍛 12:30 PM - 1:30 PM</div>
+                                <span class="timeline-location">📍 Hotel Restaurant</span>
+                                <p class="timeline-description">Lunch buffet with regional specialties.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">😴 1:30 PM - 3:30 PM</div>
+                                <span class="timeline-location">📍 Your Room</span>
+                                <p class="timeline-description">Afternoon rest period. Recharge for evening adventures!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🕉️ 4:00 PM - 5:30 PM</div>
+                                <span class="timeline-location">📍 Hirneshvar Mahadev Temple & Crocodile River</span>
+                                <p class="timeline-description">Temple darshan and witness crocodiles at the sacred river. Spiritual and natural wonders combined.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🌅 5:30 PM - 6:30 PM</div>
+                                <span class="timeline-location">📍 Sunset Point</span>
+                                <p class="timeline-description">Bhakti session and breathtaking sunset viewing. Perfect moment for group photos and reflection.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🍽️ 7:30 PM - 8:30 PM</div>
+                                <span class="timeline-location">📍 Hotel Restaurant</span>
+                                <p class="timeline-description">Dinner after a fulfilling day.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">✨ 8:30 PM - 12:00 AM</div>
+                                <span class="timeline-location">📍 Hotel Hall</span>
+                                <p class="timeline-description"><strong>GRAND NIGHT EVENT!</strong> Professional magic show, open mic experience sharing, and informal bonding. Share your stories, laugh together, and create lasting memories!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-card">
+                    <div class="day-header">
+                        <div class="day-number">3</div>
+                        <div class="day-title">
+                            <h3>Diu Beach Finale & Journey Home</h3>
+                            <p>Saturday, January 18, 2026 — The Perfect Conclusion</p>
+                        </div>
+                    </div>
+                    <div class="day-content">
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-time">🍳 7:00 AM - 8:00 AM</div>
+                                <span class="timeline-location">📍 Hotel</span>
+                                <p class="timeline-description">Breakfast and checkout. Say goodbye to Gir, hello to Diu!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🏰 8:00 AM - 11:00 AM</div>
+                                <span class="timeline-location">📍 Diu Fort (93 km travel)</span>
+                                <p class="timeline-description">Explore the magnificent 450-year-old Portuguese fortress. Walk through history with stunning ocean views and ancient architecture.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">⚓ 11:00 AM - 12:00 PM</div>
+                                <span class="timeline-location">📍 INS Khukri Memorial Ship</span>
+                                <p class="timeline-description">Visit the memorial of the naval ship—a tribute to maritime history and brave sailors.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🏖️ 12:30 PM - 1:30 PM</div>
+                                <span class="timeline-location">📍 Ghoghla Beach</span>
+                                <p class="timeline-description">Lunch by the beach! Enjoy fresh meals with ocean breeze and sandy feet.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🌊 1:30 PM - 3:45 PM</div>
+                                <span class="timeline-location">📍 Ghoghla Beach</span>
+                                <p class="timeline-description"><strong>BEACH PARTY TIME!</strong> Swimming, beach volleyball, beach games, and pure coastal fun. Lifeguards on duty. Make the most of this paradise!</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">☕ 3:45 PM - 4:30 PM</div>
+                                <span class="timeline-location">📍 Beach Side</span>
+                                <p class="timeline-description">High tea and departure preparations. Change into dry clothes and get ready for the journey home.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🚌 4:30 PM - 8:30 PM</div>
+                                <span class="timeline-location">📍 Diu → Bhavnagar (220 km)</span>
+                                <p class="timeline-description">Journey to Bhavnagar with dinner stop en route. Group gratitude and debrief session in the buses.</p>
+                            </div>
+                            
+                            <div class="timeline-item">
+                                <div class="timeline-time">🏁 9:30 PM - 12:30 AM</div>
+                                <span class="timeline-location">📍 Bhavnagar → Adalaj (177 km)</span>
+                                <p class="timeline-description">Final leg of the journey. Arrival at Adalaj with hearts full of memories and friendships strengthened.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's Included -->
+    <section class="section section-light" style="background: white;">
+        <div class="container">
+            <h2 class="section

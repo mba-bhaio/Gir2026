@@ -46,17 +46,14 @@
             color: white;
         }
 
-        .header-badge {
-            display: inline-block;
-            background: var(--gold);
-            color: var(--forest);
-            padding: 0.4rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+        .header-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
             margin-bottom: 1rem;
+            border: 3px solid var(--gold);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
         }
 
         .header h1 {
@@ -408,9 +405,9 @@
 <body>
     <!-- Header -->
     <header class="header">
-        <div class="header-badge">January 2026</div>
-        <h1>Roaring Retreat <span>Itinerary</span></h1>
+        <img src="WhatsApp Image 2026-01-07 at 13.26.47.jpeg" alt="Roaring Retreat Logo" class="header-logo">
         <p>15th - 19th January • Gir & Diu</p>
+        <h1><span>Itinerary</span></h1>
     </header>
 
     <!-- Day Tabs -->

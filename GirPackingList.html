@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Girnar Trip Packing List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #c084fc;
+            --secondary: #6366f1;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text: #f8fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background: var(--bg-dark);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            background-image: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('girnar_safari_background_v2.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .weather-banner {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+        }
+
+        .weather-item h3 {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        .weather-item p {
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .category {
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .category:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .category h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .list-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s ease;
+        }
+
+        .item:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .checkbox {
+            width: 22px;
+            height: 22px;
+            border: 2px solid var(--primary);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .item.checked .checkbox {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .item.checked .checkbox::after {
+            content: '✓';
+            color: white;
+            font-size: 14px;
+        }
+
+        .item.checked span {
+            text-decoration: line-through;
+            opacity: 0.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2.2rem; }
+            .weather-banner { flex-direction: column; gap: 1.5rem; }
+            .list-items { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Girnar Adventure</h1>
+            <p class="subtitle">Ultimate Packing List • Safari, Beach & Mountains</p>
+        </header>
+
+        <div class="weather-banner">
+            <div class="weather-item">
+                <h3>Early Mornings</h3>
+                <p>❄️ Chilly (Light Woolens)</p>
+            </div>
+            <div class="weather-item">
+                <h3>Afternoons</h3>
+                <p>☀️ Warm (Cotton/Breathable)</p>
+            </div>
+            <div class="weather-item">
+                <h3>Activities</h3>
+                <p>🐆 Safari, 🏊 Pool, ⛰️ Trek</p>
+            </div>
+        </div>
+
+        <section class="category">
+            <h2>🧣 Essential Clothing</h2>
+            <div class="list-items">
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Light Jacket/Sweater</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Full-sleeve T-shirts</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Breathable Cotton Tees</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Cargo Pants/Shorts</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Woolen Cap/Scarf</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Activewear (Sports)</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <h2>🐆 Gir Safari & Trek</h2>
+            <div class="list-items">
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Sturdy Trekking Shoes</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Binoculars</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Wide-brim Hat</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Sunglasses</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Reusable Water Bottle</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Small Daypack</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <h2>🏊 Beach & Pool</h2>
+            <div class="list-items">
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Swimwear</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Quick-dry Towel</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Flip-flops/Sandals</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Waterproof Phone Pouch</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Sunscreen (SPF 50+)</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="category">
+            <h2>🔋 Tech & Extras</h2>
+            <div class="list-items">
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Power Bank</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Camera & Extra Cards</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Personal First Aid Kit</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>ID Proofs/Safari Permit</span>
+                </div>
+                <div class="item" onclick="toggle(this)">
+                    <div class="checkbox"></div>
+                    <span>Lip Balm & Moisturizer</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggle(el) {
+            el.classList.toggle('checked');
+            // Save state to localStorage for persistence
+            const items = Array.from(document.querySelectorAll('.item')).map(item => item.classList.contains('checked'));
+            localStorage.setItem('girnar_packing_list', JSON.stringify(items));
+        }
+
+        // Load state
+        window.onload = () => {
+            const saved = JSON.parse(localStorage.getItem('girnar_packing_list'));
+            if (saved) {
+                const elements = document.querySelectorAll('.item');
+                saved.forEach((checked, i) => {
+                    if (checked && elements[i]) elements[i].classList.add('checked');
+                });
+            }
+        };
+    </script>
+</body>
+</html>

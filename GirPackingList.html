@@ -20,6 +20,7 @@
             --glass-border: rgba(255, 255, 255, 0.15);
             --text: #f0fdf4;
             --accent: #f59e0b;
+            --gold: #D4A853;
             /* Amber for highlights */
         }
 
@@ -56,8 +57,8 @@
         }
 
         .logo {
-            width: 120px;
-            height: 120px;
+            width: 400px;
+            height: 400px;
             margin-bottom: 1rem;
             filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.3));
         }
@@ -67,8 +68,11 @@
             font-weight: 600;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
             margin-bottom: 0.2rem;
+        }
+        .header h1 span {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
         }
 
         .subtitle {
@@ -201,6 +205,21 @@
                 grid-template-columns: 1fr;
             }
         }
+
+                /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        footer .footer-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 
@@ -212,14 +231,20 @@
     <script>
         const CONFIG = {
             trip: {
-                title: "Gir Jungle Safari",
-                subtitle: "Ultimate Packing List • Jungle, Beach & Pool",
-                logo: "Untitled design.svg"
+                title: "Packing List",
+                subtitle: "Packing List • Jungle, Beach & Pool",
+                logo: "Untitled design.svg",
+                dates: "15 Jan 2026 - 19 Jan 2026"
             },
             busInfo: {
                 title: "🚌 Bus Departure",
                 time: "15 Jan 2026 @ 9:30 PM Sharp!",
                 note: "Please arrive 15 mins early."
+            },
+            busInfoArrival: {
+                title: "🚌 Bus Arrival",
+                time: "19 Jan 2026 @ 7:00 AM",
+                note: ""
             },
             weather: {
                 warning: "⚠️ Weather Warning",
@@ -235,7 +260,7 @@
                         "Cargo Pants",
                         "Thermal Innerwear",
                         "Cap/Woolen Hat",
-                        "Extra Pair of Glasses"
+
                     ]
                 },
                 {
@@ -250,24 +275,25 @@
                     ]
                 },
                 {
-                    name: "🏊 2 Types of Bath",
+                    name: "🏊 2 Types of Water Activity",
                     subtitle: "Swimming Pool & Beach Experience",
                     items: [
-                        "Swimwear",
+                        "Swimwear (T-shirt & Shorts)",
                         "Quick-dry Towel",
                         "Flip-flops/Sandals",
                         "Waterproof Phone Pouch",
-                        "Sunscreen (SPF 50+)"
+                        "Sunscreen (SPF 50+)",
+                        "Plastic Bags (for wet clothes)",
                     ]
                 },
                 {
                     name: "🔋 Tech & Essentials",
                     items: [
+                        "Aadhar Card Xerox",
+                        "Id proof for Safari",
+                        "ID Proofs/Safari Permit Xerox",
                         "Power Bank & Charger",
-                        "Smartphone & Earphones",
                         "Wallet & Cash (Money)",
-                        "Aadhar Card Copy",
-                        "ID Proofs/Safari Permit"
                     ]
                 },
                 {
@@ -277,9 +303,9 @@
                         "Shaving Kit",
                         "Towel",
                         "Small Carry Bag",
-                        "Plastic Bags (for wet clothes)",
                         "Medicines",
-                        "Moisturizer"
+                        "Moisturizer",
+                        "Extra Pair of Glasses"
                     ]
                 }
             ]
@@ -291,11 +317,11 @@
         function render() {
             const app = document.getElementById('app');
             let html = `
-                <header>
-                    <img src="${CONFIG.trip.logo}" alt="Gir Safari Logo" class="logo">
-                    <h1>${CONFIG.trip.title}</h1>
-                    <p class="subtitle">${CONFIG.trip.subtitle}</p>
-                </header>
+                    <header class="header">
+        <img src="Untitled design.svg" alt="Roaring Retreat Logo" class="header-logo">
+        <p>15th - 19th January • Gir & Diu</p>
+        <h1><span>Packing List</span></h1>
+    </header>
 
                 <div class="category bus-info" style="border-left: 5px solid var(--accent); background: rgba(245, 158, 11, 0.1);">
                     <h2 style="margin-bottom: 0.5rem; color: var(--accent);">${CONFIG.busInfo.title}</h2>
@@ -335,6 +361,34 @@
                     </section>
                 `;
             });
+
+            // Important notes appended at the end
+            html += `
+                <section class="category" style="border-left: 5px solid #ef4444; background: rgba(239,68,68,0.04);">
+                    <h2>❗ Important Notes</h2>
+                    <ul style="margin-top: 0.5rem; margin-left: 1.2rem; font-size: 0.95rem; line-height: 1.6;">
+                        <li><strong>Avoid carrying precious jewellery</strong> (gold/silver chains, rings) — keep them safely at home.</li>
+                        <li><strong>Safari permit is compulsory</strong> (for those who have booked).</li>
+                        <li><strong>Aadhar card xerox</strong> — carry <strong>2 copies</strong>.</li>
+                    </ul>
+                </section>
+            `;
+
+            html += `
+            <div class="category bus-info" style="border-left: 5px solid var(--accent); background: rgba(245, 158, 11, 0.1);">
+                    <h2 style="margin-bottom: 0.5rem; color: var(--accent);">${CONFIG.busInfoArrival.title}</h2>
+                    <p style="font-size: 1.2rem; font-weight: 600;">${CONFIG.busInfoArrival.time}</p>
+                    <p style="font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem;">${CONFIG.busInfoArrival.note}</p>
+                </div>
+                `;
+
+            html += `
+                <!-- Footer -->
+    <footer>
+        <div class="footer-text">Roaring Retreat 2026</div>
+        <p>Experience the wild beauty of Gir & the serene beaches of Diu with Sankul bhaio</p>
+    </footer>
+            `;
 
             app.innerHTML = html;
         }

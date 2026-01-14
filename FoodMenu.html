@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Menu - Roaring Retreat Gir 2026</title>
+    <meta name="description" content="Food menu for the Roaring Retreat trip to Gir & Diu, January 2026">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Source+Sans+3:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4A853;
+            --gold-light: #E8C97A;
+            --forest: #1A2F23;
+            --forest-light: #2D4A3A;
+            --sand: #F5ECD7;
+            --sand-dark: #E8DCC0;
+            --earth: #8B7355;
+            --cream: #FFFDF7;
+            --green-highlight: #4CAF50;
+            --green-light: #E8F5E9;
+            --blue-highlight: #2196F3;
+            --blue-light: #E3F2FD;
+            --orange-highlight: #FF9800;
+            --orange-light: #FFF3E0;
+            --pink-highlight: #E91E63;
+            --pink-light: #FCE4EC;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: linear-gradient(135deg, #1A2F23 0%, #2D4A3A 100%);
+            min-height: 100vh;
+            color: var(--forest);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2.5rem 1rem 1.5rem;
+            color: white;
+        }
+
+        .header-logo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .header h1 span {
+            color: var(--gold);
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            color: var(--gold-light);
+            margin-top: 0.3rem;
+        }
+
+        /* Provider Badge */
+        .provider-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            color: var(--forest);
+            padding: 0.6rem 1.2rem;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(212, 168, 83, 0.4);
+        }
+
+        /* Day Tabs */
+        .day-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .day-tab {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .day-tab:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .day-tab.active {
+            background: var(--gold);
+            color: var(--forest);
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(212, 168, 83, 0.4);
+        }
+
+        .day-tab .tab-date {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            display: block;
+            margin-top: 0.2rem;
+            font-weight: 400;
+        }
+
+        /* Content Area */
+        .content-area {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .day-panel {
+            display: none;
+        }
+
+        .day-panel.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Meal Sections */
+        .meal-section {
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.5s ease forwards;
+            opacity: 0;
+        }
+
+        .meal-section:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .meal-section:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .meal-section:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .meal-section:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Meal Card */
+        .meal-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .meal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Meal Header */
+        .meal-header {
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .meal-header.breakfast {
+            background: linear-gradient(135deg, #FFB74D 0%, #FF9800 100%);
+            color: white;
+        }
+
+        .meal-header.lunch {
+            background: linear-gradient(135deg, #81C784 0%, #4CAF50 100%);
+            color: white;
+        }
+
+        .meal-header.high-tea {
+            background: linear-gradient(135deg, #9575CD 0%, #7E57C2 100%);
+            color: white;
+        }
+
+        .meal-header.dinner {
+            background: linear-gradient(135deg, #64B5F6 0%, #2196F3 100%);
+            color: white;
+        }
+
+        .meal-icon {
+            font-size: 2rem;
+        }
+
+        .meal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .meal-time {
+            margin-left: auto;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 0.4rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Menu Items Container */
+        .menu-items {
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        /* Menu Item */
+        .menu-item {
+            background: var(--sand);
+            padding: 0.9rem 1.2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .menu-item:hover {
+            transform: translateX(5px);
+            background: var(--sand-dark);
+        }
+
+        .menu-item.highlight {
+            background: linear-gradient(135deg, #E8F5E9 0%, #C8E6C9 100%);
+            border-left: 3px solid var(--green-highlight);
+        }
+
+        .menu-item.sweet {
+            background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);
+            border-left: 3px solid var(--pink-highlight);
+        }
+
+        .menu-item.beverage {
+            background: linear-gradient(135deg, #E3F2FD 0%, #BBDEFB 100%);
+            border-left: 3px solid var(--blue-highlight);
+        }
+
+        .item-icon {
+            font-size: 1.3rem;
+        }
+
+        .item-name {
+            font-weight: 500;
+            color: var(--forest);
+            font-size: 0.95rem;
+        }
+
+        /* Sweet/Special Highlight */
+        .menu-item.sweet .item-name {
+            color: #C2185B;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        footer .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Legend */
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin: 1.5rem 0 2rem;
+            padding: 0 1rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: white;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .legend-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .legend-dot.sweet {
+            background: linear-gradient(135deg, #E91E63 0%, #F48FB1 100%);
+        }
+
+        .legend-dot.highlight {
+            background: linear-gradient(135deg, #4CAF50 0%, #81C784 100%);
+        }
+
+        .legend-dot.beverage {
+            background: linear-gradient(135deg, #2196F3 0%, #64B5F6 100%);
+        }
+
+        /* Responsive */
+        @media (max-width: 700px) {
+            .day-tab {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+
+            .meal-header {
+                flex-wrap: wrap;
+            }
+
+            .meal-time {
+                margin-left: 0;
+                margin-top: 0.5rem;
+                width: 100%;
+                text-align: center;
+            }
+
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            .header-logo {
+                width: 150px;
+                height: 150px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .legend {
+                gap: 1rem;
+            }
+        }
+
+        /* Special Note Card */
+        .note-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px dashed var(--gold);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+
+        .note-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        .note-card strong {
+            color: var(--gold);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <img src="Untitled design.svg" alt="Roaring Retreat Logo" class="header-logo">
+        <p>15th - 19th January • Gir & Diu</p>
+        <h1><span>Food Menu</span></h1>
+    </header>
+
+    <!-- Legend -->
+    <div class="legend">
+        <div class="legend-item">
+            <span class="legend-dot sweet"></span>
+            Sweet / Dessert
+        </div>
+        <div class="legend-item">
+            <span class="legend-dot highlight"></span>
+            Special Item
+        </div>
+        <div class="legend-item">
+            <span class="legend-dot beverage"></span>
+            Beverages
+        </div>
+    </div>
+
+    <!-- Day Tabs -->
+    <div class="day-tabs">
+        <button class="day-tab active" onclick="showDay(0)">Day 1<span class="tab-date">Fri, 16th Jan</span></button>
+        <button class="day-tab" onclick="showDay(1)">Day 2<span class="tab-date">Sat, 17th Jan</span></button>
+        <button class="day-tab" onclick="showDay(2)">Day 3<span class="tab-date">Sun, 18th Jan</span></button>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content-area">
+
+        <!-- Day 1 - 16th January -->
+        <div class="day-panel active" id="day0">
+
+            <!-- Breakfast -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header breakfast">
+                        <span class="meal-icon">🌅</span>
+                        <span class="meal-title">Breakfast</span>
+                        <span class="meal-time">8:00 AM - 9:00 AM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Coffee / Milk</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥣</span>
+                            <span class="item-name">Cornflakes</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍞</span>
+                            <span class="item-name">Bread Butter & Jam</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥘</span>
+                            <span class="item-name">Chhole Bhature</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Mix Veg Uttapam</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header lunch">
+                        <span class="meal-icon">🍽️</span>
+                        <span class="meal-title">Lunch</span>
+                        <span class="meal-time">12:30 PM - 1:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Honey Chilly Potato</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍛</span>
+                            <span class="item-name">Paneer Lababdar</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Veg Handi</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫘</span>
+                            <span class="item-name">Mug Masala</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Tawa Roti / Paratha</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Dal Fry</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Jeera Rice</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥗</span>
+                            <span class="item-name">Buttermilk, Salad, Papad</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍮</span>
+                            <span class="item-name">Rice Kheer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Tea -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header high-tea">
+                        <span class="meal-icon">☕</span>
+                        <span class="meal-title">High Tea</span>
+                        <span class="meal-time">4:00 PM - 4:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Coffee</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥟</span>
+                            <span class="item-name">Mix Pakoda</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header dinner">
+                        <span class="meal-icon">🌙</span>
+                        <span class="meal-title">Dinner</span>
+                        <span class="meal-time">7:00 PM - 8:00 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥡</span>
+                            <span class="item-name">Manchurian Dry</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍜</span>
+                            <span class="item-name">Manchow Soup</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🧀</span>
+                            <span class="item-name">Paneer Butter Masala</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍆</span>
+                            <span class="item-name">Baigan Bhartha</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Lasaniya Aloo</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Tawa Roti / Rotla</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Kadhi</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Khichadi</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥗</span>
+                            <span class="item-name">Buttermilk, Salad, Papad</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍯</span>
+                            <span class="item-name">Moong Dal Halwa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 2 - 17th January -->
+        <div class="day-panel" id="day1">
+
+            <!-- Breakfast -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header breakfast">
+                        <span class="meal-icon">🌅</span>
+                        <span class="meal-title">Breakfast</span>
+                        <span class="meal-time">9:30 AM - 10:00 AM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Coffee / Milk</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥣</span>
+                            <span class="item-name">Cornflakes</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍞</span>
+                            <span class="item-name">Bread Butter & Jam</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Mendu Vada</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Aloo Paratha with Curd</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Upma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header lunch">
+                        <span class="meal-icon">🍽️</span>
+                        <span class="meal-title">Lunch</span>
+                        <span class="meal-time">12:30 PM - 1:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🌽</span>
+                            <span class="item-name">Corn Masala</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🧀</span>
+                            <span class="item-name">Paneer Angara</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Veg Jaipuri</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Aloo Gobi</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Tawa Roti / Paratha</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Dal Fry</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Jeera Rice</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥗</span>
+                            <span class="item-name">Buttermilk, Salad, Papad</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍮</span>
+                            <span class="item-name">Basundi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Tea -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header high-tea">
+                        <span class="meal-icon">☕</span>
+                        <span class="meal-title">High Tea</span>
+                        <span class="meal-time">4:00 PM - 4:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Coffee</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥪</span>
+                            <span class="item-name">Veg Sandwich (non grill)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header dinner">
+                        <span class="meal-icon">🌙</span>
+                        <span class="meal-title">Dinner</span>
+                        <span class="meal-time">7:00 PM - 8:00 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥟</span>
+                            <span class="item-name">Methi Gota</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍜</span>
+                            <span class="item-name">Hot & Sour Soup</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🍛</span>
+                            <span class="item-name">Veg Kolhapuri</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Rajwadi Dhokli</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍅</span>
+                            <span class="item-name">Sev Tometo</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Tawa Roti / Paratha</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Veg Pulav</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥣</span>
+                            <span class="item-name">Bundi Raita</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥗</span>
+                            <span class="item-name">Buttermilk, Salad, Papad</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍩</span>
+                            <span class="item-name">Gulabjamun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Day 3 - 18th January -->
+        <div class="day-panel" id="day2">
+
+            <!-- Note Card -->
+            <div class="note-card">
+                <p>🏖️ <strong>DIU Day!</strong> Some meals will be served at different locations during the trip.</p>
+            </div>
+
+            <!-- Breakfast -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header breakfast">
+                        <span class="meal-icon">🌅</span>
+                        <span class="meal-title">Breakfast</span>
+                        <span class="meal-time">6:00 AM - 7:00 AM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Coffee / Milk</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥣</span>
+                            <span class="item-name">Cornflakes</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍞</span>
+                            <span class="item-name">Bread Butter & Jam</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥘</span>
+                            <span class="item-name">Idli Sambhar</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Puri Bhaji</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Poha</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lunch -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header lunch">
+                        <span class="meal-icon">🍽️</span>
+                        <span class="meal-title">Lunch</span>
+                        <span class="meal-time">12:00 PM - 1:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥔</span>
+                            <span class="item-name">Veg Cutlet</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍛</span>
+                            <span class="item-name">Veg Makhanvala</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🧀</span>
+                            <span class="item-name">Paneer Tikka</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Tawa Roti, Tandoori Roti</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Dal Fry</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Jeera Rice</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🥗</span>
+                            <span class="item-name">Buttermilk, Papad, Salad</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍍</span>
+                            <span class="item-name">Pineapple Halwa</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- High Tea -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header high-tea">
+                        <span class="meal-icon">☕</span>
+                        <span class="meal-title">High Tea</span>
+                        <span class="meal-time">4:00 PM - 4:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item beverage">
+                            <span class="item-icon">☕</span>
+                            <span class="item-name">Tea / Milk / Coffee</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🥟</span>
+                            <span class="item-name">Samosa</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍪</span>
+                            <span class="item-name">Biscuits & Wafer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dinner -->
+            <div class="meal-section">
+                <div class="meal-card">
+                    <div class="meal-header dinner">
+                        <span class="meal-icon">🌙</span>
+                        <span class="meal-title">Dinner</span>
+                        <span class="meal-time">7:00 PM - 8:30 PM</span>
+                    </div>
+                    <div class="menu-items">
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🍆</span>
+                            <span class="item-name">Ringan no Oro</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🫓</span>
+                            <span class="item-name">Rotla</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍚</span>
+                            <span class="item-name">Khichdi</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🍲</span>
+                            <span class="item-name">Kadi</span>
+                        </div>
+                        <div class="menu-item beverage">
+                            <span class="item-icon">🥛</span>
+                            <span class="item-name">Buttermilk</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🧅</span>
+                            <span class="item-name">Lili Dungari</span>
+                        </div>
+                        <div class="menu-item">
+                            <span class="item-icon">🌶️</span>
+                            <span class="item-name">Marcha</span>
+                        </div>
+                        <div class="menu-item highlight">
+                            <span class="item-icon">🧈</span>
+                            <span class="item-name">Ghee</span>
+                        </div>
+                        <div class="menu-item sweet">
+                            <span class="item-icon">🍬</span>
+                            <span class="item-name">Godh</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">🦁 Roaring Retreat</div>
+        <p>Gir & Diu 2026 • An Unforgettable Journey</p>
+    </footer>
+
+    <script>
+        function showDay(dayIndex) {
+            // Update tabs
+            document.querySelectorAll('.day-tab').forEach((tab, i) => {
+                tab.classList.toggle('active', i === dayIndex);
+            });
+            // Update panels
+            document.querySelectorAll('.day-panel').forEach((panel, i) => {
+                panel.classList.toggle('active', i === dayIndex);
+            });
+        }
+    </script>
+</body>
+
+</html>
